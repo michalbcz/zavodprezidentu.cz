@@ -1,3 +1,4 @@
+<%@ page import="cz.zavodprezidentu.utils.Colorer" %>
 <!DOCTYPE html>
 <html lang="cs">
 <head>
@@ -110,15 +111,16 @@
             </div>
 
             <div class="row-fluid">
-
+                <% def colorer = new Colorer() %>
                 <div class="circleStats">
                     <g:each in="${candidates}" var="candidate">
+                        <% def nextColor = colorer.nextRandom() %>
                         <div class="span2 budik" onTablet="span4" onDesktop="span2">
-                            <div class="circleStatsItem red">
+                            <div class="circleStatsItem ${nextColor.color}">
                                 <i class="fa-icon-user"></i>
                                 <span class="plus">+</span>
                                 <span class="percent">%</span>
-                                <input type="text" value="58" class="orangeCircle"/>
+                                <input type="text" value="58" class="${nextColor.circleColor}"/>
                             </div>
 
                             <div class="box-small-title">${candidate.name}</div>
