@@ -2342,8 +2342,7 @@ footer p {
 /*
     Zavodprezidentu.cz overrides.
 */
-
-.row-fluid [class*="span"]:first-child {
+.row-fluid [class*="budik"]:first-child {
     margin-left: 2.127659574468085%;
     *margin-left: 2.074468085106383%;
 }

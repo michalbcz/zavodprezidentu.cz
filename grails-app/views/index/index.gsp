@@ -113,7 +113,7 @@
 
                 <div class="circleStats">
                     <g:each in="${candidates}" var="candidate">
-                        <div class="span2" onTablet="span4" onDesktop="span2">
+                        <div class="span2 budik" onTablet="span4" onDesktop="span2">
                             <div class="circleStatsItem red">
                                 <i class="fa-icon-user"></i>
                                 <span class="plus">+</span>
