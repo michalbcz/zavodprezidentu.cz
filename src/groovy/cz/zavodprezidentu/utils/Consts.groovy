@@ -10,4 +10,9 @@ class Consts {
     private static final BigDecimal MAX_AMOUNT = new BigDecimal("5000000");
     public static final BigDecimal ONE_PERCENT = MAX_AMOUNT / (100);
 
+    static {
+        Consts.NUMBER_FORMAT.setMinimumFractionDigits(2);
+        Consts.NUMBER_FORMAT.setMaximumFractionDigits(2);
+    }
+
 }

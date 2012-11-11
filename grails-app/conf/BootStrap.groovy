@@ -24,13 +24,13 @@ class BootStrap {
             new Candidate(name: "Tomio Okamura", image: "tomio_okamura.jpg", account:
                     new Account(number: "330855007/5500", balance: new BigDecimal("200000"), bank: "Raifka")).save(failOnError: true)
             new Candidate(name: "Zuzana Roithová", image: "zuzana_roithova.jpg", account:
-                    new Account(number: "330855007/5500", balance: new BigDecimal("500000"), bank: "Raifka")).save(failOnError: true)
+                    new Account(number: "330855007/5500", balance: new BigDecimal("500000.34"), bank: "Raifka")).save(failOnError: true)
             new Candidate(name: "Karel Schwarzenberg", image: "karel_schwarzenberg.jpg", account:
-                    new Account(number: "330855007/5500", balance: new BigDecimal("1200000"), bank: "Raifka")).save(failOnError: true)
+                    new Account(number: "330855007/5500", balance: new BigDecimal("1200000.50"), bank: "Raifka")).save(failOnError: true)
             new Candidate(name: "Přemysl Sobotka", image:  "premysl_sobotka.jpg", account:
                     new Account(number: "330855007/5500", balance: new BigDecimal("20000"), bank: "Raifka")).save(failOnError: true)
             new Candidate(name: "Miloš Zeman", image: "milos_zeman.jpg", account:
-                    new Account(number: "330855007/5500", balance: new BigDecimal("900000"), bank: "Raifka")).save(failOnError: true)
+                    new Account(number: "330855007/5500", balance: new BigDecimal("900000.50"), bank: "Raifka")).save(failOnError: true)
 
         }
     }
