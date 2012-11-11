@@ -1,4 +1,4 @@
-<%@ page import="cz.zavodprezidentu.utils.Colorer" %>
+<%@ page import="cz.zavodprezidentu.utils.Utils; cz.zavodprezidentu.utils.Consts; java.text.NumberFormat; cz.zavodprezidentu.utils.Colorer" %>
 <!DOCTYPE html>
 <html lang="cs">
 <head>
@@ -113,17 +113,22 @@
             <div class="row-fluid">
                 <% def colorer = new Colorer() %>
                 <div class="circleStats">
-                    <g:each in="${candidates}" var="candidate">
+                    <g:each in="${accounts}" var="account">
                         <% def nextColor = colorer.nextRandom() %>
                         <div class="span2 budik" onTablet="span4" onDesktop="span2">
-                            <div class="circleStatsItem ${nextColor.color}">
-                                <i class="fa-icon-user"></i>
-                                <span class="plus">+</span>
+                            <div class="circleStatsItem ${nextColor.color}"
+                                 style="background-image: url(${resource(dir: 'images/kandidati', file: 'vladimir_franz.jpg')});">
+                                <!-- <i class="fa-icon-user"></i> -->
+<!--                                <span class="plus">+</span>
                                 <span class="percent">%</span>
-                                <input type="text" value="58" class="${nextColor.circleColor}"/>
+-->
+                                <input type="text" value="${Utils.getPercentage(account.balance)}" class="${nextColor.circleColor}"/>
+                            </div>
+                            <div class="box-header">
+                                <h2>${account.candidate.name}</h2>
+                                ${Consts.NUMBER_FORMAT.format(account.balance)}
                             </div>
 
-                            <div class="box-small-title">${candidate.name}</div>
                         </div>
                     </g:each>
                 </div>

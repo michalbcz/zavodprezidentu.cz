@@ -530,7 +530,8 @@ function circle_progess() {
         'dynamicDraw': true,
         'thickness': 0.2,
         'tickColorizeValues': true,
-		'skin':'tron'
+		'skin':'tron',
+        displayInput: false
     })
 
     $(".orangeCircle").knob({
@@ -543,7 +544,8 @@ function circle_progess() {
         'dynamicDraw': true,
         'thickness': 0.2,
         'tickColorizeValues': true,
-		'skin':'tron'
+		'skin':'tron',
+        displayInput: false
     })
 
 	$(".lightOrangeCircle").knob({
@@ -556,7 +558,8 @@ function circle_progess() {
         'dynamicDraw': true,
         'thickness': 0.2,
         'tickColorizeValues': true,
-		'skin':'tron'
+		'skin':'tron',
+        displayInput: false
     })
 
     $(".blueCircle").knob({
@@ -569,7 +572,8 @@ function circle_progess() {
         'dynamicDraw': true,
         'thickness': 0.2,
         'tickColorizeValues': true,
-		'skin':'tron'
+		'skin':'tron',
+        displayInput: false
     })
 
 	$(".yellowCircle").knob({
@@ -582,7 +586,8 @@ function circle_progess() {
         'dynamicDraw': true,
         'thickness': 0.2,
         'tickColorizeValues': true,
-		'skin':'tron'
+		'skin':'tron',
+        displayInput: false
     })
 
 	$(".pinkCircle").knob({
@@ -595,7 +600,8 @@ function circle_progess() {
         'dynamicDraw': true,
         'thickness': 0.2,
         'tickColorizeValues': true,
-		'skin':'tron'
+		'skin':'tron',
+        displayInput: false
     })
 	
 	
