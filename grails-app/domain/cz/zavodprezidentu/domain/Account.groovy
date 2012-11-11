@@ -4,7 +4,7 @@ class Account {
     String number;
     String bank;
     String url;
-    Double balance;
+    BigDecimal balance;
 
     static belongsTo = [candidate:Candidate]
     static hasMany = [items:TransactionItem]
