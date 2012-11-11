@@ -54,6 +54,7 @@
     </ul>
 </div>
 <!-- start: Header -->
+
 <div class="navbar">
     <div class="navbar-inner">
         <div class="container-fluid">
@@ -76,12 +77,12 @@
         <div class="span2 main-menu-span">
             <div class="nav-collapse sidebar-nav">
                 <ul class="nav nav-tabs nav-stacked main-menu">
-                    <li><a href="index.html"><i class="icon-home icon-white"></i><span class="hidden-tablet">Dashboard</span></a>
+                    <li><g:link controller="index"><i class="icon-home icon-white"></i><span class="hidden-tablet">Přehled</span></g:link>
                     </li>
-                    <li><a href="ui.html"><i class="icon-eye-open icon-white"></i><span class="hidden-tablet">UI Features</span>
+                    <li><a href=""><i class="icon-eye-open icon-white"></i><span class="hidden-tablet">Příjmy</span>
                     </a></li>
                 </ul>
-            </div><!--/.well -->
+            </div><!--.well -->
         </div><!--/span-->
     <!-- end: Main Menu -->
 
