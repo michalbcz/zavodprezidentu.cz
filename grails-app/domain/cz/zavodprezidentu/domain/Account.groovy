@@ -10,5 +10,9 @@ class Account {
     static hasMany = [items:TransactionItem]
 
     static constraints = {
+        number()
+        bank()
+        balance()
+        url(nullable: true)
     }
 }
