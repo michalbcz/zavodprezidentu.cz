@@ -12,6 +12,12 @@
 /.idea
 *.iml
 
+# Eclipse support files
+/target-eclipse
+
+# git related files
+/git-flow/*
+
 # default HSQL database files for production mode
 /prodDb.*
 
