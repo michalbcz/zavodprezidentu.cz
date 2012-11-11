@@ -19,6 +19,7 @@
     <link href="${resource(dir: 'css', file: 'bootstrap-responsive.css')}" rel="stylesheet">
     <link id="base-style" href="${resource(dir: 'css', file: 'style.css')}" rel="stylesheet">
     <link id="base-style-responsive" href="${resource(dir: 'css', file: 'style-responsive.css')}" rel="stylesheet">
+    <link id="override-style" href="${resource(dir: 'css', file: 'override.css')}" rel="stylesheet">
 
     <!--[if lt IE 7 ]>
 	<link id="ie-style" href="${resource(dir: 'css', file: 'style-ie.css')}" rel="stylesheet">
@@ -97,19 +98,6 @@
         <div id="content" class="span10">
             <!-- start: Content -->
 
-            <div>
-                <hr>
-                <ul class="breadcrumb">
-                    <li>
-                        <a href="#">Home</a> <span class="divider">/</span>
-                    </li>
-                    <li>
-                        <a href="#">Dashboard</a>
-                    </li>
-                </ul>
-                <hr>
-            </div>
-
             <div class="row-fluid">
                 <% def colorer = new Colorer() %>
                 <div class="circleStats">
@@ -117,7 +105,7 @@
                         <% def nextColor = colorer.nextRandom() %>
                         <div class="span2 budik" onTablet="span4" onDesktop="span2">
                             <div class="circleStatsItem ${nextColor.color}"
-                                 style="background-image: url(${resource(dir: 'images/kandidati', file: 'vladimir_franz.jpg')});">
+                                 style="background-image: url(${resource(dir: 'images/kandidati', file: account.candidate.image)});">
                                 <!-- <i class="fa-icon-user"></i> -->
 <!--                                <span class="plus">+</span>
                                 <span class="percent">%</span>

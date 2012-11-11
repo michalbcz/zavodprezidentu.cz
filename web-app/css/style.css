@@ -2337,27 +2337,3 @@ footer p {
 .icon-red {
   background-image: url("../img/glyphicons-halflings-red.png");
 }
-
-
-/*
-    Zavodprezidentu.cz overrides.
-*/
-.row-fluid [class*="budik"]:first-child {
-    margin-left: 2.127659574468085%;
-    *margin-left: 2.074468085106383%;
-}
-
-.box-header {
-    height: 50px;
-    border: 1px solid #DDD;
-    margin-bottom: 15px;
-}
-
-.box-header h2 {
-    float: none;
-}
-
-.circleStatsItem {
-    background-repeat: no-repeat;
-    background-position: center;
-}
