@@ -1,20 +1,21 @@
 package cz.zavodprezidentu.domain
 
 class Account {
-//    String number;
-//    String bank;
-
-    String url;
+    String number;
+    String bank;
     BigDecimal balance;
+    BigDecimal totalIncome;
+    BigDecimal totalSpend;
 
     static belongsTo = [candidate:Candidate]
     static hasMany = [items:TransactionItem]
 
     static constraints = {
-//        number()
-//        bank()
+        bank(nullable: true)
+        number(unique: true)
         balance()
-        url(nullable: true)
+        totalIncome(nullable: true)
+        totalSpend(nullable: true)
     }
 
 }
