@@ -12,7 +12,7 @@ import static grails.test.MockUtils.mockDomain
 
 /**
  */
-class RaiffeisenAccountInfoScrapperTest extends GroovyTestCase{
+class RaiffeisenAccountInfoScrapperTest extends GroovyTestCase {
     private static final double DELTA = 0.0001
 
     /**
