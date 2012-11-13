@@ -1,5 +1,6 @@
 import cz.zavodprezidentu.domain.Account
 import cz.zavodprezidentu.domain.Candidate
+import cz.zavodprezidentu.scraper.account.scrappers.CeskaSporitelnaTransparentAccountInfoScraper
 import cz.zavodprezidentu.scraper.account.scrappers.FioAccountInfoScraper
 import cz.zavodprezidentu.scraper.account.scrappers.RaiffeisenAccountInfoScrapper
 import grails.util.Environment
@@ -19,14 +20,23 @@ class BootStrap {
                     new Account(number: "330855008/5500", balance: new BigDecimal("80000"), bank: "Raifka")).save(failOnError: true)
             new Candidate(name: "Zuzana Roithová", image: "zuzana_roithova.jpg", account:
                     new Account(number: "330855011/5500", balance: new BigDecimal("500000.34"), bank: "Raifka")).save(failOnError: true)
-            new Candidate(name: "Karel Schwarzenberg", image: "karel_schwarzenberg.jpg", account:
-                    new Account(number: "330855012/5500", balance: new BigDecimal("1200000.50"), bank: "Raifka")).save(failOnError: true)
-            new Candidate(name: "Přemysl Sobotka", image:  "premysl_sobotka.jpg", account:
-                    new Account(number: "330855013/5500", balance: new BigDecimal("20000"), bank: "Raifka")).save(failOnError: true)
-            new Candidate(name: "Miloš Zeman", image: "milos_zeman.jpg", account:
-                    new Account(number: "330855015/5500", balance: new BigDecimal("900000.50"), bank: "Raifka")).save(failOnError: true)
 
 
+            def zeman = new Candidate(name: "Miloš Zeman", image: "milos_zeman.jpg",
+                    accountUrl: "http://www.csas.cz/banka/nav/o-nas/transparentni-ucet-23902000730800-d00018326")
+            zeman.account = new CeskaSporitelnaTransparentAccountInfoScraper(url: zeman.accountUrl).account
+            zeman.save()
+
+            def sobotka = new Candidate(name: "Přemysl Sobotka", image:  "premysl_sobotka.jpg",
+                    accountUrl: "http://www.csas.cz/banka/nav/o-nas/transparentni-ucet-28411593490800-d00018501")
+            sobotka.account = new CeskaSporitelnaTransparentAccountInfoScraper(url: sobotka.accountUrl).account
+            sobotka.save()
+
+
+            def schwarzenberg = new Candidate(name: "Karel Schwarzenberg", image: "karel_schwarzenberg.jpg",
+                    accountUrl: "http://www.csas.cz/banka/nav/o-nas/transparentni-ucet-28403923090800-d00018255")
+            schwarzenberg.account = new CeskaSporitelnaTransparentAccountInfoScraper(url: schwarzenberg.accountUrl).account
+            schwarzenberg.save()
 
             def dienstbier = new Candidate(name: "Jiří Dienstbier", image: "jiri_dienstbier.jpg", accountUrl: "https://www.fio.cz/scgi-bin/hermes/dz-transparent.cgi?ID_ucet=2100280379")
             dienstbier.account = new FioAccountInfoScraper(url: dienstbier.accountUrl).account

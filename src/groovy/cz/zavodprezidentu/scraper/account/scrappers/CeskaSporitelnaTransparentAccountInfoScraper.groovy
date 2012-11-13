@@ -1,35 +1,59 @@
 package cz.zavodprezidentu.scraper.account.scrappers
 
 import cz.zavodprezidentu.domain.Account
+import cz.zavodprezidentu.domain.TransactionItem
 import cz.zavodprezidentu.scraper.account.AccountInfoScraper
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
+import org.jsoup.nodes.Element
 
 import java.text.NumberFormat
 
 class CeskaSporitelnaTransparentAccountInfoScraper implements AccountInfoScraper {
 
-    def private URL url
+    def private String url
 
 
     /**
      *
-     * @param url url of page of transparent account eg. http://www.scrappers.cz/banka/nav/o-nas/transparentni-ucet-23902000730800-d00018326
+     * @param url url of page of transparent account eg. http://www.csas.cz/banka/nav/o-nas/transparentni-ucet-28403923090800-d00018255
      *
      */
-    CeskaSporitelnaTransparentAccountInfoScraper(URL url) {
-        this.url = url
-    }
 
     @Override
     Account getAccount() {
-
         Document document = Jsoup.connect(url.toString()).get()
+        def Account account = new Account()
 
-        def accountBalanceText = document.select(".document-content strong").get(3).text()
-        Number accountBalance = parseAmount(accountBalanceText)
+        def accountBalanceText = document.select(".document-content strong").last().text()
+        account.balance = parseAmount(accountBalanceText)
+        account.number = (document.select("div.title").html() =~ /(\d+\/\d+)/)[0][0]
+        account.items = []
+        account.totalSpend = 0
+        account.totalIncome = 0
 
-        return new Account(balance: accountBalance as BigDecimal)
+        def rows = document.select("table.redheading tr")
+        //skip header
+        rows.remove(0)
+
+        rows.each {row ->
+            def item = parseRow(row)
+            if (item != null) {
+                item.account = account
+                account.items << item
+                if (item.amount > 0) {
+                    account.totalIncome += item.amount
+                } else {
+                    account.totalSpend += item.amount
+                }
+            }
+        }
+        log.debug "Scraped ${account.items.size()} items."
+        return account
+
+
+
+        return account
 
     }
 
@@ -42,5 +66,21 @@ class CeskaSporitelnaTransparentAccountInfoScraper implements AccountInfoScraper
         def amount = formatter.parse(amountAsTextNormalized)
 
         return amount
+    }
+
+    /**
+     * @param row
+     * @return
+     */
+    def TransactionItem parseRow(Element row) {
+        TransactionItem item = new TransactionItem()
+        String s = row.select("td")[4].html()
+        //handle <p> in <td>
+        if (s.contains("<p>")) {
+            s = row.select("td")[4].select("p").html()
+        }
+        item.amount = parseAmount(s.replace(" ", "").replace("&nbsp;", "").trim())
+
+        return item
     }
 }
