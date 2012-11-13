@@ -10,20 +10,23 @@ import org.jsoup.nodes.Element
 /**
  */
 class RaiffeisenAccountInfoScrapper implements AccountInfoScraper {
-    private String url;
+    private static final String BANK_NAME = "Raiffeisen Bank"
     private static final String BANK_CODE = "5550";
 
-    private static final def RE_AMOUNT_MATCH = /.*\d*\.\d*<br.*/
-    private static final def RE_AMOUNT_SELECT = /(\d*\.\d*)<br.*/
+    private String url;
+
+    private static final String RE_AMOUNT_MATCH = /.*\d*\.\d*<br.*/
+    private static final String RE_AMOUNT_SELECT = /(\d*\.\d*)<br.*/
+    private static final String RE_ACCOUNT_NUMBER_SELECT = /(\d*)<\/h2>/
 
 
     @Override
     Account getAccount() {
         def account = new Account()
-        account.bank = "Raiffeisen Bank";
+        account.bank = BANK_NAME;
 
         Document document = Jsoup.connect(url.toString()).get()
-        account.number = (document.select("div#page div#text2 div#prava-cast h2")[0] =~ /(\d*)<\/h2>/)[0][1] + "/${BANK_CODE}"
+        account.number = (document.select("div#page div#text2 div#prava-cast h2")[0] =~ RE_ACCOUNT_NUMBER_SELECT)[0][1] + "/${BANK_CODE}"
         account.balance = new BigDecimal((document.select("div#page div#text2 div#prava-cast p strong")[1] =~ /(\d*.\d*) CZK<\/strong>/)[0][1])
 
         def rows = document.select("div#page div#text2 div#prava-cast table tbody tr")

@@ -25,3 +25,7 @@
 .row-fluid [class*="budik"] {
     margin-left: 8%;
 }
+
+.no-data {
+    opacity: 0.3;
+}

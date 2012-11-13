@@ -105,8 +105,13 @@
                     <g:each in="${accounts}" var="account">
                         <% def nextColor = colorer.nextRandom() %>
                         <div class="span2 budik" onTablet="span4" onDesktop="span2">
-                            <div class="circleStatsItem ${nextColor.color}"
-                                 style="background-image: url(${resource(dir: 'images/kandidati', file: account.candidate.image)});">
+                            <g:if test="${account.candidate.accountUrl}">
+                                <div class="circleStatsItem ${nextColor.color}" style="background-image: url(${resource(dir: 'images/kandidati', file: account.candidate.image)});">
+                            </g:if>
+                            <g:else>
+                                <div class="circleStatsItem ${nextColor.color} no-data" style="background-image: url(${resource(dir: 'images/kandidati', file: account.candidate.image)});">
+                            </g:else>
+
                                 <!-- <i class="fa-icon-user"></i> -->
 <!--                                <span class="plus">+</span>
                                 <span class="percent">%</span>
