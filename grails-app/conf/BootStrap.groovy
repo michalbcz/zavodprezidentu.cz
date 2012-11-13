@@ -12,14 +12,14 @@ class BootStrap {
             println "Development environment"
 
 
-            new Candidate(name: "Jana Bobošíková", image: "jana_bobosikova.jpg",  account:
-                    new Account(number: "123/0100", balance: new BigDecimal("100500"), bank: "KB a.s.")).save(failOnError: true)
+            new Candidate(name: "Jana Bobošíková", image: "jana_bobosikova.jpg",  accountUrl: null, account:
+                    new Account(number: "1", balance: new BigDecimal("0"))).save(failOnError: true)
             new Candidate(name: "Vladimír Dlouhý", image: "vladimir_dlouhy.jpg", account:
-                    new Account(number: "330855007/5500", balance: new BigDecimal("800000"), bank: "Raifka")).save(failOnError: true)
+                    new Account(number: "2", balance: new BigDecimal("0"))).save(failOnError: true)
             new Candidate(name: "Taťána Fischerová", image: "tatana_fischerova.jpg", account:
-                    new Account(number: "330855008/5500", balance: new BigDecimal("80000"), bank: "Raifka")).save(failOnError: true)
+                    new Account(number: "3", balance: new BigDecimal("0"))).save(failOnError: true)
             new Candidate(name: "Zuzana Roithová", image: "zuzana_roithova.jpg", account:
-                    new Account(number: "330855011/5500", balance: new BigDecimal("500000.34"), bank: "Raifka")).save(failOnError: true)
+                    new Account(number: "4", balance: new BigDecimal("0"))).save(failOnError: true)
 
 
             def zeman = new Candidate(name: "Miloš Zeman", image: "milos_zeman.jpg",
