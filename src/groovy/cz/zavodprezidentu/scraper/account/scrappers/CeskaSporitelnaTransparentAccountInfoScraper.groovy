@@ -51,10 +51,6 @@ class CeskaSporitelnaTransparentAccountInfoScraper implements AccountInfoScraper
         log.debug "Scraped ${account.items.size()} items."
         return account
 
-
-
-        return account
-
     }
 
     private Number parseAmount(String amountAsText) {
