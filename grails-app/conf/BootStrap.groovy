@@ -59,7 +59,7 @@ class BootStrap {
             def dienstbier = new Candidate(
                     name: "Jiří Dienstbier",
                     image: "jiri_dienstbier.jpg",
-                    accountUrl: "https://www.fio.cz/scgi-bin/hermes/dz-transparent.cgi?ID_ucet=2100280379"
+                    accountUrl: "https://www.fio.cz/scgi-bin/hermes/dz-transparent.cgi?pohyby_DAT_od=16.07.2012&ID_ucet=2100280379"
             )
             dienstbier.account = new FioAccountInfoScraper(url: dienstbier.accountUrl).account
             dienstbier.save(failOnError: true)
@@ -67,7 +67,7 @@ class BootStrap {
             def franz = new Candidate(
                     name: "Vladimír Franz",
                     image: "vladimir_franz.jpg",
-                    accountUrl: "https://www.fio.cz/scgi-bin/hermes/dz-transparent.cgi?ID_ucet=2600311696"
+                    accountUrl: "https://www.fio.cz/scgi-bin/hermes/dz-transparent.cgi?pohyby_DAT_od=02.10.2012&ID_ucet=2600311696"
             )
             franz.account = new FioAccountInfoScraper(url: franz.accountUrl).account
             franz.save(failOnError: true)
