@@ -15,8 +15,7 @@
     <!-- end: Mobile Specific -->
 
     <!-- start: CSS -->
-    <link id="bootstrap-style" href="${resource(dir: 'css', file: 'bootstrap.css')}" rel="stylesheet">
-    <link href="${resource(dir: 'css', file: 'bootstrap-responsive.css')}" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
     <link id="base-style" href="${resource(dir: 'css', file: 'style.css')}" rel="stylesheet">
     <link id="base-style-responsive" href="${resource(dir: 'css', file: 'style-responsive.css')}" rel="stylesheet">
     <link id="override-style" href="${resource(dir: 'css', file: 'override.css')}" rel="stylesheet">
@@ -153,10 +152,10 @@
 
 <!-- start: JavaScript-->
 
-<script src="${resource(dir: 'js', file: 'jquery-1.7.2.min.js')}"></script>
-<script src="${resource(dir: 'js', file: 'jquery-ui-1.8.21.custom.min.js')}"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
 
-<script src="${resource(dir: 'js', file: 'bootstrap.js')}"></script>
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
 
 <script src="${resource(dir: 'js', file: 'jquery.cookie.js')}"></script>
 
@@ -165,10 +164,6 @@
 <script src="${resource(dir: 'js', file: 'jquery.dataTables.min.js')}"></script>
 
 <script src="${resource(dir: 'js', file: 'excanvas.js')}"></script>
-<script src="${resource(dir: 'js', file: 'jquery.flot.min.js')}"></script>
-<script src="${resource(dir: 'js', file: 'jquery.flot.pie.min.js')}"></script>
-<script src="${resource(dir: 'js', file: 'jquery.flot.stack.js')}"></script>
-<script src="${resource(dir: 'js', file: 'jquery.flot.resize.min.js')}"></script>
 
 <script src="${resource(dir: 'js', file: 'jquery.chosen.min.js')}"></script>
 
@@ -181,8 +176,6 @@
 <script src="${resource(dir: 'js', file: 'jquery.elfinder.min.js')}"></script>
 
 <script src="${resource(dir: 'js', file: 'jquery.raty.min.js')}"></script>
-
-<script src="${resource(dir: 'js', file: 'jquery.iphone.toggle.js')}"></script>
 
 <script src="${resource(dir: 'js', file: 'jquery.uploadify-3.1.min.js')}"></script>
 
