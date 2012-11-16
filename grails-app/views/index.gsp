@@ -63,7 +63,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a class="brand" href="index.html"><span class="hidden-phone"><g:meta name="app.displayName"/></span></a>
+            <a class="brand" href="index.html"><img src="${resource(dir: 'images', file: 'logo.png')}"/><span class="hidden-phone">Závod prezidentů</span></a>
 
         </div>
     </div>
@@ -77,10 +77,9 @@
         <div class="span2 main-menu-span">
             <div class="nav-collapse sidebar-nav">
                 <ul class="nav nav-tabs nav-stacked main-menu">
-                    <li><g:link controller="index"><i class="icon-home icon-white"></i><span class="hidden-tablet">Přehled</span></g:link>
-                    </li>
-                    <li><a href=""><i class="icon-eye-open icon-white"></i><span class="hidden-tablet">Příjmy</span>
-                    </a></li>
+                    <li><g:link controller='index' action='balance'><i class="icon-home icon-white"></i><span class="hidden-tablet">Zůstatky</span></g:link></li>
+                    <li><g:link controller='index' action='income'><i class="icon-plus-sign icon-white"></i><span class="hidden-tablet">Příjmy</span></g:link></li>
+                    <li><g:link controller='index' action='expense'><i class="icon-minus-sign icon-white"></i><span class="hidden-tablet">Výdaje</span></g:link></li>
                 </ul>
             </div><!--.well -->
         </div><!--/span-->
@@ -100,6 +99,11 @@
             <!-- start: Content -->
 
             <div class="row-fluid">
+                <div class="box">
+                    <div class="box-content">
+                        <h1>${title}</h1>
+                    </div>
+                </div>
                 <% def colorer = new Colorer() %>
                 <div class="circleStats">
                     <g:each in="${accounts}" var="account">
@@ -116,11 +120,11 @@
 <!--                                <span class="plus">+</span>
                                 <span class="percent">%</span>
 -->
-                                <input type="text" value="${Utils.getPercentage(account.balance)}" class="${nextColor.circleColor}"/>
+                                <input type="text" value="${Utils.getPercentage(Math.abs(account[key]), Math.abs(max))}" class="${nextColor.circleColor}"/>
                             </div>
                             <div class="box-header">
                                 <h2>${account.candidate.name}</h2>
-                                ${Consts.NUMBER_FORMAT.format(account.balance)}
+                                ${Consts.NUMBER_FORMAT.format(account[key])}
                             </div>
 
                         </div>
