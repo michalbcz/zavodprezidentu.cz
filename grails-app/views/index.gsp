@@ -116,7 +116,7 @@
                 <% def colorer = new Colorer() %>
                 <div class="circleStats">
                     <g:each in="${accounts}" var="account">
-                        <% def nextColor = colorer.nextRandom() %>
+                        <% def nextColor = colorer.nextByLogoColours() %>
                         <div class="span2 budik" onTablet="span4" onDesktop="span2">
                             <g:if test="${account.candidate.accountUrl}">
                                 <div class="circleStatsItem ${nextColor.color}" style="background-image: url(${resource(dir: 'images/kandidati', file: account.candidate.image)});">
