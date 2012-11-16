@@ -79,7 +79,15 @@
                     <li><g:link controller='index' action='balance'><i class="icon-home icon-white"></i><span class="hidden-tablet">Zůstatky</span></g:link></li>
                     <li><g:link controller='index' action='income'><i class="icon-plus-sign icon-white"></i><span class="hidden-tablet">Příjmy</span></g:link></li>
                     <li><g:link controller='index' action='expense'><i class="icon-minus-sign icon-white"></i><span class="hidden-tablet">Výdaje</span></g:link></li>
+                    <li>&nbsp;</li>
+                    <li>&nbsp;</li>
+                    <li>&nbsp;</li>
                 </ul>
+
+                <div style="padding: 20px;" class="g-plusone"></div><br/><br/>
+                <div class="fb-like" data-href="http://www.zavodprezidentu.cz/" data-send="false" data-width="180" data-show-faces="false"></div></br>
+                <a href="https://twitter.com/intent/tweet?button_hashtag=zavodprezidentu" class="twitter-hashtag-button" data-lang="cs" data-url="http://zavodprezidentu.cz">Tweet #zavodprezidentu</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
             </div><!--.well -->
         </div><!--/span-->
     <!-- end: Main Menu -->
@@ -123,7 +131,7 @@
                             </div>
                             <div class="box-header">
                                 <h2>${account.candidate.name}</h2>
-                                ${Consts.NUMBER_FORMAT.format(account[key])}
+                                ${Consts.NUMBER_FORMAT.format(account[key]).replaceAll(" ", "&nbsp;")}
                             </div>
 
                         </div>
@@ -137,14 +145,16 @@
 
             <footer>
                 <p>
-                    <span style="text-align:left;float:left">&copy; <a href="" target="_blank">@krtek_cz & @michalbcz</a> 2012
+                    <span style="text-align:left;float:left">&copy; <a href="http://twitter.com/krtek_cz">@krtek_cz</a> &
+                        <a href="http://twitter.com/michalb_cz">@michalbcz</a> 2012
                     </span>
-                    <span style="text-align:right;float:right">Powered by: <a href="#">Grails & Perfectum Dashboard</a></span>
+                    <span style="text-align:right;float:right">Powered by: <a href="http://grails.org">Grails</a> &
+                        <a href="https://wrapbootstrap.com/theme/perfectum-dashboard-admin-template-WB0PHMG9K">Perfectum Dashboard</a></span>
                 </p>
 
                 <div class="clearfix"></div>
             </footer>
-
+            </div>
         </div><!--/.fluid-container-->
     </div>
 </div>
@@ -203,6 +213,25 @@
   })();
 
 </script>
+
+<script type="text/javascript">
+    (function() {
+        window.___gcfg = {lang: 'cs'};
+
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/plusone.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+    })();
+</script>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/cs_CZ/all.js#xfbml=1";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
 </body>
 </html>
