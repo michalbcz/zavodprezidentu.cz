@@ -6,6 +6,7 @@ class Account {
     BigDecimal balance = 0;
     BigDecimal totalIncome = 0;
     BigDecimal totalSpend = 0;
+    Integer incomingTransactions = 0;
 
     static belongsTo = [candidate:Candidate]
     static hasMany = [items:TransactionItem]
@@ -16,6 +17,7 @@ class Account {
         balance()
         totalIncome()
         totalSpend()
+        incomingTransactions()
     }
 
 }

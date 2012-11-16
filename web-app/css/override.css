@@ -63,3 +63,8 @@ a.brand span {
     vertical-align: text-bottom;
     color: snow;
 }
+
+#social {
+    position: fixed;
+    bottom: 20px;
+}
