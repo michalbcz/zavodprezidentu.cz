@@ -1,4 +1,4 @@
-<%@ page import="cz.zavodprezidentu.utils.Utils; cz.zavodprezidentu.utils.Consts; java.text.NumberFormat; cz.zavodprezidentu.utils.Colorer" %>
+<%@ page import="cz.zavodprezidentu.utils.Utils; cz.zavodprezidentu.utils.Consts; cz.zavodprezidentu.utils.Colorer" %>
 <!DOCTYPE html>
 <html lang="cs">
 <head>
@@ -79,9 +79,7 @@
                     <li><g:link controller='index' action='balance'><i class="icon-home icon-white"></i><span class="hidden-tablet">Zůstatky</span></g:link></li>
                     <li><g:link controller='index' action='income'><i class="icon-plus-sign icon-white"></i><span class="hidden-tablet">Příjmy</span></g:link></li>
                     <li><g:link controller='index' action='expense'><i class="icon-minus-sign icon-white"></i><span class="hidden-tablet">Výdaje</span></g:link></li>
-                    <li>&nbsp;</li>
-                    <li>&nbsp;</li>
-                    <li>&nbsp;</li>
+                    <li><g:link controller='index' action='transactions'><i class="icon-comment icon-white"></i><span class="hidden-tablet">Příspěvky</span></g:link></li>
                 </ul>
 
                 <div id="social" class="hidden-tablet">
@@ -135,7 +133,7 @@
                             </div>
                             <div class="box-header">
                                 <h2>${account.candidate.name}</h2>
-                                ${Consts.NUMBER_FORMAT.format(account[key]).replaceAll(" ", "&nbsp;")}
+                                ${format.format(account[key]).replaceAll(" ", "&nbsp;")}
                             </div>
 
                         </div>
