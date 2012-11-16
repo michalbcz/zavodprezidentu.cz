@@ -84,10 +84,14 @@
                     <li>&nbsp;</li>
                 </ul>
 
-                <div style="padding: 20px;" class="g-plusone"></div><br/><br/>
-                <div class="fb-like" data-href="http://www.zavodprezidentu.cz/" data-send="false" data-width="180" data-show-faces="false"></div></br>
-                <a href="https://twitter.com/intent/tweet?button_hashtag=zavodprezidentu" class="twitter-hashtag-button" data-lang="cs" data-url="http://zavodprezidentu.cz">Tweet #zavodprezidentu</a>
-                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                <div id="social" class="hidden-tablet">
+                    <div class="g-plusone"></div><br/><br/>
+                    <div class="fb-like" data-href="http://www.zavodprezidentu.cz/" data-send="false" data-width="180" data-show-faces="false"></div></br>
+                    <a href="https://twitter.com/intent/tweet?button_hashtag=zavodprezidentu" class="twitter-hashtag-button" data-lang="cs" data-url="http://zavodprezidentu.cz">Tweet #zavodprezidentu</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script><br/><br/>
+                    <iframe src="http://ghbtns.com/github-btn.html?user=michalbcz&repo=zavodprezidentu.cz&type=fork"
+                            allowtransparency="true" frameborder="0" scrolling="0" width="62" height="20"></iframe>
+                </div>
             </div><!--.well -->
         </div><!--/span-->
     <!-- end: Main Menu -->
