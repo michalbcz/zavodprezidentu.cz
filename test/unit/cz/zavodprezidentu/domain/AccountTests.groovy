@@ -18,7 +18,7 @@ class AccountTests {
     public void "account with only balance should be saved"() {
         BigDecimal balance = 1000.55
 
-        def account = new Account(balance: balance)
+        def account = new Account(balance: balance, number: "0002323232")
         account.candidate = new Candidate(name: "Blue Kamikaze", account: account)
         account = account.save(flush: true, failOnError: true)
 
