@@ -4,10 +4,10 @@ package cz.zavodprezidentu.utils
  * Returns a random color.
  */
 public class Colorer {
-    def list = [new ColorRepresentation(color: "red", circleColor: "orangeCircle"),
+    def list = [new ColorRepresentation(color: "red", circleColor: "redCircle"),
             new ColorRepresentation(color: "blue", circleColor: "blueCircle"),
             new ColorRepresentation(color: "yellow", circleColor: "yellowCircle"),
-            new ColorRepresentation(color: "pink", circleColor: "pinkCircle"),
+            //new ColorRepresentation(color: "pink", circleColor: "pinkCircle"),
             new ColorRepresentation(color: "green", circleColor: "greenCircle"),
             //new ColorRepresentation(color: "lightOrange", circleColor: "lightOrangeCircle")
     ]

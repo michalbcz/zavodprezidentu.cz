@@ -526,7 +526,7 @@ function circle_progess() {
         'readOnly': true,
         'width': 120,
         'height': 120,
-        'fgColor': '#b9e672',
+        'fgColor': '#90C93F',
         'dynamicDraw': true,
         'thickness': 0.2,
         'tickColorizeValues': true,
@@ -568,7 +568,7 @@ function circle_progess() {
         'readOnly': true,
         'width': 120,
         'height': 120,
-        'fgColor': '#2FABE9',
+        'fgColor': '#60B2E1',
         'dynamicDraw': true,
         'thickness': 0.2,
         'tickColorizeValues': true,
@@ -582,7 +582,7 @@ function circle_progess() {
         'readOnly': true,
         'width': 120,
         'height': 120,
-        'fgColor': '#e7e572',
+        'fgColor': '#FFB931',
         'dynamicDraw': true,
         'thickness': 0.2,
         'tickColorizeValues': true,
@@ -603,8 +603,22 @@ function circle_progess() {
 		'skin':'tron',
         displayInput: false
     })
-	
-	
+
+    $(".redCircle").knob({
+        'min':0,
+        'max':100,
+        'readOnly': true,
+        'width': 120,
+        'height': 120,
+        'fgColor': '#F95252',
+        'dynamicDraw': true,
+        'thickness': 0.2,
+        'tickColorizeValues': true,
+        'skin':'tron',
+        displayInput: false
+    })
+
+
 }                
 
       

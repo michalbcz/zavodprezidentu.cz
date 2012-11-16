@@ -63,7 +63,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a class="brand" href="index.html"><span class="hidden-phone"><g:meta name="app.displayName"/></span></a>
+            <a class="brand" href="index.html"><img src="${resource(dir: 'images', file: 'logo.png')}"/><span class="hidden-phone"><g:meta name="app.displayName"/></span></a>
 
         </div>
     </div>
@@ -77,10 +77,10 @@
         <div class="span2 main-menu-span">
             <div class="nav-collapse sidebar-nav">
                 <ul class="nav nav-tabs nav-stacked main-menu">
-                    <li><g:link controller="index"><i class="icon-home icon-white"></i><span class="hidden-tablet">Přehled</span></g:link>
+                    <li><g:link controller="index"><i class="icon-home icon-white"></i><span class="hidden-tablet">Zůstatky</span></g:link>
                     </li>
-                    <li><a href=""><i class="icon-eye-open icon-white"></i><span class="hidden-tablet">Příjmy</span>
-                    </a></li>
+                    <li><a href=""><i class="icon-plus-sign icon-white"></i><span class="hidden-tablet">Příjmy</span></a></li>
+                    <li><a href=""><i class="icon-minus-sign icon-white"></i><span class="hidden-tablet">Výdaje</span></a></li>
                 </ul>
             </div><!--.well -->
         </div><!--/span-->
@@ -100,6 +100,11 @@
             <!-- start: Content -->
 
             <div class="row-fluid">
+                <div class="box">
+                    <div class="box-content">
+                        <h1>Zůstatky na účtu</h1>
+                    </div>
+                </div>
                 <% def colorer = new Colorer() %>
                 <div class="circleStats">
                     <g:each in="${accounts}" var="account">
