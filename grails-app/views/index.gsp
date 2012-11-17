@@ -93,7 +93,7 @@
                     <li><g:link controller='index' action='transactions'><i class="icon-comment icon-white"></i><span class="hidden-tablet">Příspěvky</span></g:link></li>
                 </ul>
 
-                <div id="social" class="hidden-tablet">
+                <div id="social" class="hidden-tablet hidden-phone">
                     <div class="g-plusone"></div><br/><br/>
                     <div class="fb-like" data-href="http://www.zavodprezidentu.cz/" data-send="false" data-width="180" data-show-faces="false"></div></br>
                     <a href="https://twitter.com/intent/tweet?button_hashtag=zavodprezidentu" class="twitter-hashtag-button" data-lang="cs" data-url="http://zavodprezidentu.cz">Tweet #zavodprezidentu</a>
