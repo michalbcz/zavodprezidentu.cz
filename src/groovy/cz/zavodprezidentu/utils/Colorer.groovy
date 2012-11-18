@@ -4,12 +4,11 @@ package cz.zavodprezidentu.utils
  * Returns a random color.
  */
 public class Colorer {
-    def list = [new ColorRepresentation(color: "red", circleColor: "redCircle"),
-            new ColorRepresentation(color: "blue", circleColor: "blueCircle"),
+    def list = [
             new ColorRepresentation(color: "yellow", circleColor: "yellowCircle"),
-            //new ColorRepresentation(color: "pink", circleColor: "pinkCircle"),
             new ColorRepresentation(color: "green", circleColor: "greenCircle"),
-            //new ColorRepresentation(color: "lightOrange", circleColor: "lightOrangeCircle")
+            new ColorRepresentation(color: "blue", circleColor: "blueCircle"),
+            new ColorRepresentation(color: "red", circleColor: "redCircle")
     ]
 
     int index = 0;
@@ -25,6 +24,15 @@ public class Colorer {
 
     def nextRandom() {
         return list[random.nextInt(list.size())];
+    }
+
+    def nextByLogoColours() {
+        def color = list[index];
+        index += 1;
+        if (index > 2) {
+            index = 3;
+        }
+        return color;
     }
 }
 

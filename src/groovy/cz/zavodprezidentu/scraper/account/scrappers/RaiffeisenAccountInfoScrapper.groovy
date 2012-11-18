@@ -55,6 +55,7 @@ class RaiffeisenAccountInfoScrapper implements AccountInfoScraper {
                 account.items << item
                 if (item.amount > 0) {
                     account.totalIncome += item.amount
+                    account.incomingTransactions += 1
                 } else {
                     account.totalSpend += item.amount
                 }

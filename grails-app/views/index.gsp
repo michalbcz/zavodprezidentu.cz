@@ -1,4 +1,4 @@
-<%@ page import="cz.zavodprezidentu.utils.Utils; cz.zavodprezidentu.utils.Consts; java.text.NumberFormat; cz.zavodprezidentu.utils.Colorer" %>
+<%@ page import="cz.zavodprezidentu.utils.Utils; cz.zavodprezidentu.utils.Consts; cz.zavodprezidentu.utils.Colorer" %>
 <!DOCTYPE html>
 <html lang="cs">
 <head>
@@ -15,8 +15,7 @@
     <!-- end: Mobile Specific -->
 
     <!-- start: CSS -->
-    <link id="bootstrap-style" href="${resource(dir: 'css', file: 'bootstrap.css')}" rel="stylesheet">
-    <link href="${resource(dir: 'css', file: 'bootstrap-responsive.css')}" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
     <link id="base-style" href="${resource(dir: 'css', file: 'style.css')}" rel="stylesheet">
     <link id="base-style-responsive" href="${resource(dir: 'css', file: 'style-responsive.css')}" rel="stylesheet">
     <link id="override-style" href="${resource(dir: 'css', file: 'override.css')}" rel="stylesheet">
@@ -43,6 +42,17 @@
 </head>
 
 <body>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/cs_CZ/all.js#xfbml=1";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
 <div id="overlay">
     <ul>
         <li class="li1"></li>
@@ -80,7 +90,17 @@
                     <li><g:link controller='index' action='balance'><i class="icon-home icon-white"></i><span class="hidden-tablet">Zůstatky</span></g:link></li>
                     <li><g:link controller='index' action='income'><i class="icon-plus-sign icon-white"></i><span class="hidden-tablet">Příjmy</span></g:link></li>
                     <li><g:link controller='index' action='expense'><i class="icon-minus-sign icon-white"></i><span class="hidden-tablet">Výdaje</span></g:link></li>
+                    <li><g:link controller='index' action='transactions'><i class="icon-comment icon-white"></i><span class="hidden-tablet">Příspěvky</span></g:link></li>
                 </ul>
+
+                <div id="social" class="hidden-tablet hidden-phone">
+                    <div class="g-plusone"></div><br/><br/>
+                    <div class="fb-like" data-href="http://www.zavodprezidentu.cz/" data-send="false" data-width="180" data-show-faces="false"></div></br>
+                    <a href="https://twitter.com/intent/tweet?button_hashtag=zavodprezidentu" class="twitter-hashtag-button" data-lang="cs" data-url="http://zavodprezidentu.cz">Tweet #zavodprezidentu</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script><br/><br/>
+                    <iframe src="http://ghbtns.com/github-btn.html?user=michalbcz&repo=zavodprezidentu.cz&type=fork"
+                            allowtransparency="true" frameborder="0" scrolling="0" width="62" height="20"></iframe>
+                </div>
             </div><!--.well -->
         </div><!--/span-->
     <!-- end: Main Menu -->
@@ -107,7 +127,7 @@
                 <% def colorer = new Colorer() %>
                 <div class="circleStats">
                     <g:each in="${accounts}" var="account">
-                        <% def nextColor = colorer.nextRandom() %>
+                        <% def nextColor = colorer.nextByLogoColours() %>
                         <div class="span2 budik" onTablet="span4" onDesktop="span2">
                             <g:if test="${account.candidate.accountUrl}">
                                 <div class="circleStatsItem ${nextColor.color}" style="background-image: url(${resource(dir: 'images/kandidati', file: account.candidate.image)});">
@@ -124,7 +144,7 @@
                             </div>
                             <div class="box-header">
                                 <h2>${account.candidate.name}</h2>
-                                ${Consts.NUMBER_FORMAT.format(account[key])}
+                                ${format.format(account[key]).replaceAll(" ", "&nbsp;")}
                             </div>
 
                         </div>
@@ -138,14 +158,16 @@
 
             <footer>
                 <p>
-                    <span style="text-align:left;float:left">&copy; <a href="" target="_blank">@krtek_cz & @michalbcz</a> 2012
+                    <span style="text-align:left;float:left">&copy; <a href="http://twitter.com/krtek_cz">@krtek_cz</a> &
+                        <a href="http://twitter.com/michalb_cz">@michalbcz</a> 2012
                     </span>
-                    <span style="text-align:right;float:right">Powered by: <a href="#">Grails & Perfectum Dashboard</a></span>
+                    <span style="text-align:right;float:right">Powered by: <a href="http://grails.org">Grails</a> &
+                        <a href="https://wrapbootstrap.com/theme/perfectum-dashboard-admin-template-WB0PHMG9K">Perfectum Dashboard</a></span>
                 </p>
 
                 <div class="clearfix"></div>
             </footer>
-
+            </div>
         </div><!--/.fluid-container-->
     </div>
 </div>
@@ -153,10 +175,10 @@
 
 <!-- start: JavaScript-->
 
-<script src="${resource(dir: 'js', file: 'jquery-1.7.2.min.js')}"></script>
-<script src="${resource(dir: 'js', file: 'jquery-ui-1.8.21.custom.min.js')}"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
 
-<script src="${resource(dir: 'js', file: 'bootstrap.js')}"></script>
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
 
 <script src="${resource(dir: 'js', file: 'jquery.cookie.js')}"></script>
 
@@ -165,10 +187,6 @@
 <script src="${resource(dir: 'js', file: 'jquery.dataTables.min.js')}"></script>
 
 <script src="${resource(dir: 'js', file: 'excanvas.js')}"></script>
-<script src="${resource(dir: 'js', file: 'jquery.flot.min.js')}"></script>
-<script src="${resource(dir: 'js', file: 'jquery.flot.pie.min.js')}"></script>
-<script src="${resource(dir: 'js', file: 'jquery.flot.stack.js')}"></script>
-<script src="${resource(dir: 'js', file: 'jquery.flot.resize.min.js')}"></script>
 
 <script src="${resource(dir: 'js', file: 'jquery.chosen.min.js')}"></script>
 
@@ -181,8 +199,6 @@
 <script src="${resource(dir: 'js', file: 'jquery.elfinder.min.js')}"></script>
 
 <script src="${resource(dir: 'js', file: 'jquery.raty.min.js')}"></script>
-
-<script src="${resource(dir: 'js', file: 'jquery.iphone.toggle.js')}"></script>
 
 <script src="${resource(dir: 'js', file: 'jquery.uploadify-3.1.min.js')}"></script>
 
@@ -199,8 +215,27 @@
 <script src="${resource(dir: 'js', file: 'custom.js')}"></script>
 <script type="text/javascript">
 
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36387794-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
 </script>
-<!-- end: JavaScript-->
+
+<script type="text/javascript">
+    (function() {
+        window.___gcfg = {lang: 'cs'};
+
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/plusone.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+    })();
+</script>
 
 </body>
 </html>
