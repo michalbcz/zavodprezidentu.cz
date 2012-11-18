@@ -1,33 +1,26 @@
 package cz.zavodprezidentu.scraper.account.scrappers
 
-import cz.zavodprezidentu.domain.Account
 import cz.zavodprezidentu.domain.TransactionItem
-import grails.test.mixin.Mock
-import grails.test.mixin.TestFor
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
-import org.jsoup.nodes.Element
+import org.junit.BeforeClass
+import org.junit.Test
 
-import static grails.test.MockUtils.mockDomain
+import static org.junit.Assert.*
 
 /**
  */
-class RaiffeisenAccountInfoScrapperTest extends GroovyTestCase {
+public abstract class AbstractRaiffeisenAccountInfoScrapperTest {
     private static final double DELTA = 0.0001
 
-    /**
-     * <b>Warning:</b> This test fails from within an IDE!
-     */
-    void testGetAccount() {
-        mockDomain(Account)
-        def scrapper = new RaiffeisenAccountInfoScrapper(
-                url: "http://www.rb.cz/firemni-finance/transparentni-ucty/?tr_acc=vypis&account_number=22200011")
+    def abstract getScraper();
 
-        def account = scrapper.getAccount()
+    @Test void testGetAccountAgainstWeb() {
+        def account = scraper.getAccount()
         assertEquals("22200011/5550", account.getNumber())
     }
 
-    void testParseRow() {
+    @Test void testParseRow() {
         def scraper = new RaiffeisenAccountInfoScrapper()
         Document d = Jsoup.parse("""\
             <table>

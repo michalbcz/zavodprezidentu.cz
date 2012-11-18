@@ -10,10 +10,12 @@ import org.jsoup.nodes.Element
 /**
  */
 class RaiffeisenAccountInfoScrapper implements AccountInfoScraper {
-    private static final String BANK_NAME = "Raiffeisen Bank"
-    private static final String BANK_CODE = "5550";
 
-    private String url;
+    private static final String BANK_NAME = "Raiffeisen Bank"
+    private static final String BANK_CODE = "5550"
+
+    private String url
+    private String html
 
     private static final String RE_AMOUNT_MATCH = /.*\d*\.\d*<br.*/
     private static final String RE_AMOUNT_SELECT = /(\d*\.\d*)<br.*/
@@ -25,7 +27,20 @@ class RaiffeisenAccountInfoScrapper implements AccountInfoScraper {
         def account = new Account()
         account.bank = BANK_NAME;
 
-        Document document = Jsoup.connect(url.toString()).get()
+        Document document
+
+        if (url && html) throw new RuntimeException(
+                "You defined both url (${url}) and html as source for scrapper." +
+                "I don't know which to choose. Please fill only one.")
+
+        if (url) {
+           document = Jsoup.connect(url.toString()).get()
+        } else if (html) {
+           document = Jsoup.parse(html)
+        } else {
+            throw new RuntimeException("No source of html to be scraped.")
+        }
+
         account.number = (document.select("div#page div#text2 div#prava-cast h2")[0] =~ RE_ACCOUNT_NUMBER_SELECT)[0][1] + "/${BANK_CODE}"
         account.balance = new BigDecimal((document.select("div#page div#text2 div#prava-cast p strong")[1] =~ /(\d*.\d*) CZK<\/strong>/)[0][1])
 
