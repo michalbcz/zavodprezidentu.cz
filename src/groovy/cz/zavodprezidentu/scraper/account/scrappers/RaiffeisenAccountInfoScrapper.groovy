@@ -7,6 +7,10 @@ import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 
+import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
+import java.text.NumberFormat
+
 /**
  */
 class RaiffeisenAccountInfoScrapper implements AccountInfoScraper {
@@ -81,17 +85,30 @@ class RaiffeisenAccountInfoScrapper implements AccountInfoScraper {
      * @return
      */
     def TransactionItem parseRow(Element e) {
-        TransactionItem item = new TransactionItem()
+        TransactionItem item = new TransactionItem(amount: 0)
+
         try {
-            if (e.select("td")[4] ==~ RE_AMOUNT_MATCH) {
-                item.amount = new BigDecimal((e.select("td")[4] =~ RE_AMOUNT_SELECT)[0][1])
-            } else {
-                return null
+            def amountElement = e.select("td")[4]
+            def amountText = amountElement.text()
+
+            if (amountText) {
+               item.amount = new BigDecimal(amountFormat.parse(amountText))
             }
-        } catch (Exception exception) {
-            log.error("Error scraping row: ${e}", exception)
-            throw exception
         }
+        catch (NumberFormatException nfe) {
+            item.amount = 0
+        }
+
         return item
+    }
+
+    private NumberFormat getAmountFormat() {
+        def amountFormat = new DecimalFormat()
+        def symbols = new DecimalFormatSymbols()
+        symbols.setDecimalSeparator('.' as char)
+        symbols.setGroupingSeparator(',' as char)
+        amountFormat.setDecimalFormatSymbols(symbols)
+
+        return amountFormat
     }
 }

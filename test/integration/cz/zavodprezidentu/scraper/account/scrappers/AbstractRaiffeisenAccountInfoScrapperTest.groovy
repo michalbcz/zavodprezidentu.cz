@@ -11,7 +11,8 @@ import static org.junit.Assert.*
 /**
  */
 public abstract class AbstractRaiffeisenAccountInfoScrapperTest {
-    private static final double DELTA = 0.0001
+
+    protected static final double DELTA = 0.0001
 
     def abstract getScraper();
 
@@ -38,21 +39,4 @@ public abstract class AbstractRaiffeisenAccountInfoScrapperTest {
         assertEquals(new Double("1559200.00"), item.amount, DELTA)
     }
 
-    void testParseFeeRow() {
-        def scraper = new RaiffeisenAccountInfoScrapper();
-        Document d = Jsoup.parse(""""\
-            <table>
-                <tr>
-	                <td>01.11.2012<br>11:00<br></td>
-	                <td class="whitelc">Vystavení potvrzení<br></td>
-	                <td class="whitel">01.11.2012<br>01.11.2012<br>
-	                Jiný trans. poplatek</td><td class="whitel"> <br>
-	                898 <br>
-	                </td><td class="whtransaction"><br></td>
-	                <td class="whtransaction">-100,00<br><br></td>
-                </tr>
-            </table>
-            """)
-        assertNull(scraper.parseRow(d.select("tr")[0]))
-    }
 }
