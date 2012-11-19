@@ -43,16 +43,13 @@ class CeskaSporitelnaTransparentAccountInfoScraper implements AccountInfoScraper
                 account.items << item
                 if (item.amount > 0) {
                     account.totalIncome += item.amount
+                    account.incomingTransactions += 1
                 } else {
                     account.totalSpend += item.amount
                 }
             }
         }
         log.debug "Scraped ${account.items.size()} items."
-        return account
-
-
-
         return account
 
     }

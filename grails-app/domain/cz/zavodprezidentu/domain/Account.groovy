@@ -3,9 +3,10 @@ package cz.zavodprezidentu.domain
 class Account {
     String number;
     String bank;
-    BigDecimal balance;
-    BigDecimal totalIncome;
-    BigDecimal totalSpend;
+    BigDecimal balance = 0;
+    BigDecimal totalIncome = 0;
+    BigDecimal totalSpend = 0;
+    Integer incomingTransactions = 0;
 
     static belongsTo = [candidate:Candidate]
     static hasMany = [items:TransactionItem]
@@ -14,8 +15,9 @@ class Account {
         bank(nullable: true)
         number(unique: true)
         balance()
-        totalIncome(nullable: true)
-        totalSpend(nullable: true)
+        totalIncome()
+        totalSpend()
+        incomingTransactions()
     }
 
 }

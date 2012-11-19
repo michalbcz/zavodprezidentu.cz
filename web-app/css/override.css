@@ -1,5 +1,12 @@
 /*
     Zavodprezidentu.cz overrides.
+
+    Logo colors:
+        yellow -> #FFB931
+        green -> #90C93F
+        blue -> #60B2E1
+
+        red -> #F95252
 */
 
 .box-header {
@@ -28,4 +35,36 @@
 
 .no-data {
     opacity: 0.3;
+}
+
+.navbar-inner {
+    background: #a9a9a9;
+    border-bottom: snow;
+    border-top: snow;
+}
+
+h1 {
+    text-align: center;
+}
+
+.box {
+    margin-left: 8%;
+    margin-right: 8%;
+}
+
+.brand img {
+    margin-top: 0px;
+    margin-right: 30px;
+    margin-bottom: 0px;
+}
+
+a.brand span {
+    font-size:  35px;
+    vertical-align: text-bottom;
+    color: snow;
+}
+
+#social {
+    position: fixed;
+    bottom: 20px;
 }

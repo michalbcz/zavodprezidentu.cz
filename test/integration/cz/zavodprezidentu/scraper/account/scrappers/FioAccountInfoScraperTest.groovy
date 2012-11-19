@@ -4,16 +4,18 @@ import cz.zavodprezidentu.domain.Account
 import cz.zavodprezidentu.domain.TransactionItem
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
+import org.junit.Test
+
+import static org.junit.Assert.*
 
 import static grails.test.MockUtils.mockDomain
 
 /**
  */
-class FioAccountInfoScraperTest  extends GroovyTestCase {
+class FioAccountInfoScraperTest {
     private static final double DELTA = 0.0001
 
-    void testGetAccount() {
-        mockDomain(Account)
+    @Test void "account number is scraped right"() {
         def scrapper = new FioAccountInfoScraper(
                 url: "https://www.fio.cz/scgi-bin/hermes/dz-transparent.cgi?ID_ucet=2600311696")
 
@@ -21,7 +23,7 @@ class FioAccountInfoScraperTest  extends GroovyTestCase {
         assertEquals("2600311696/2010", account.getNumber())
     }
 
-    void testParseRow() {
+    @Test void testParseRow() {
         def scraper = new FioAccountInfoScraper()
         Document d = Jsoup.parse("""\
             <table>
