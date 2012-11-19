@@ -5,7 +5,7 @@
 
     <!-- start: Meta -->
     <meta charset="utf-8">
-    <title><g:meta name="app.displayName"/></title>
+    <title>Závod prezidentů</title>
     <meta name="description" content="Přehled transparentních účtů prezidenstkých kandidátů.">
     <meta name="author" content="Lukáš Marek, Michal Bernhard">
     <!-- end: Meta -->
