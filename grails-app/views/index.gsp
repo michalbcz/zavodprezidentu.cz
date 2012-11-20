@@ -148,7 +148,15 @@
                                 </div>
                                 <div class="box-header">
                                     <h2>${account.candidate.name}</h2>
-                                    ${format.format(account[key]).replaceAll(" ", "&nbsp;")}
+                                    <g:set var="formattedValue" value="${format.format(account[key]).replaceAll(" ", "&nbsp;")}"/>
+                                    <g:if test="${account.candidate.accountUrl}">
+                                        <a href="${account.candidate.accountUrl}">
+                                        <span class="value">${formattedValue}</span>
+                                        </a>
+                                    </g:if>
+                                    <g:else>
+                                        <span class="value">${formattedValue}</span>
+                                    </g:else>
                                 </div>
 
                         </div>
