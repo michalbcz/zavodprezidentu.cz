@@ -126,42 +126,60 @@
                 </div>
                 <% def colorer = new Colorer() %>
                 <div class="circleStats">
-                    <g:each in="${accounts}" var="account">
+                    <g:each in="${accounts}" var="account" status="index">
                         <% def nextColor = colorer.nextByLogoColours() %>
-                        <div class="span2 budik"
-                             onTablet="span4"
-                             onDesktop="span2"
-                             <g:if test="${account.candidate.accountUrl == null}"> title="Kandidát nemá zřízen transparentní účet."</g:if>>
 
-                                <g:if test="${account.candidate.accountUrl}">
-                                    <div class="circleStatsItem ${nextColor.color}" style="background-image: url(${resource(dir: 'images/kandidati', file: account.candidate.image)});">
-                                </g:if>
-                                <g:else>
-                                    <div class="circleStatsItem ${nextColor.color} no-data" style="background-image: url(${resource(dir: 'images/kandidati', file: account.candidate.image)});">
-                                </g:else>
+                        <g:set var="budikId" value="budik${index}"/>
 
-                                    <!-- <i class="fa-icon-user"></i> -->
-    <!--                                <span class="plus">+</span>
-                                    <span class="percent">%</span>
-    -->
-                                    <input type="text" value="${Utils.getPercentage(Math.abs(account[key]), Math.abs(max))}" class="${nextColor.circleColor}"/>
-                                </div>
-                                <div class="box-header">
-                                    <h2>${account.candidate.name}</h2>
-                                    <g:set var="formattedValue" value="${format.format(account[key]).replaceAll(" ", "&nbsp;")}"/>
+                        <script type="text/javascript">
+                            jQuery(document).ready(function($) {
+                               $("${budikId}").click(function() {
+                                  window.location.href = "${account.candidate.wikiUrl}";
+                               });
+                            });
+                        </script>
+
+                        <g:if test="${account.candidate.wikiUrl}">
+                        <a href="${account.candidate.wikiUrl}">
+                        </g:if>
+                            <div id="${budikId}" class="span2 budik"
+                                 onTablet="span4"
+                                 onDesktop="span2"
+                                 <g:if test="${account.candidate.accountUrl == null}"> title="Kandidát nemá zřízen transparentní účet."</g:if>>
+
                                     <g:if test="${account.candidate.accountUrl}">
-                                        <a href="${account.candidate.accountUrl}">
-                                        <span class="value">${formattedValue}</span>
-                                        </a>
+                                        <div class="circleStatsItem ${nextColor.color}" style="background-image: url(${resource(dir: 'images/kandidati', file: account.candidate.image)});">
                                     </g:if>
                                     <g:else>
-                                        <span class="value">${formattedValue}</span>
+                                        <div class="circleStatsItem ${nextColor.color} no-data" style="background-image: url(${resource(dir: 'images/kandidati', file: account.candidate.image)});">
                                     </g:else>
-                                </div>
 
-                        </div>
+                                        <!-- <i class="fa-icon-user"></i> -->
+        <!--                                <span class="plus">+</span>
+                                        <span class="percent">%</span>
+        -->
+                                        <input type="text" value="${Utils.getPercentage(Math.abs(account[key]), Math.abs(max))}" class="${nextColor.circleColor}"/>
+                                    </div>
+                                    <div class="box-header">
+                                        <h2>${account.candidate.name}</h2>
+                                        <g:set var="formattedValue" value="${format.format(account[key]).replaceAll(" ", "&nbsp;")}"/>
+                                        <g:if test="${account.candidate.accountUrl}">
+                                            <a href="${account.candidate.accountUrl}">
+                                            <span class="value">${formattedValue}</span>
+                                            </a>
+                                        </g:if>
+                                        <g:else>
+                                            <span class="value">${formattedValue}</span>
+                                        </g:else>
+                                    </div>
+
+                            </div>
+                        <g:if test="${account.candidate.wikiUrl}">
+                        </a>
+                        </g:if>
                     </g:each>
                 </div>
+
             </div>
 
             <hr>

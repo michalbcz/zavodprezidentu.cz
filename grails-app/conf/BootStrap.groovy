@@ -13,27 +13,32 @@ class BootStrap {
                     name: "Jana Bobošíková",
                     image: "jana_bobosikova.jpg",
                     accountUrl: null,
+                    wikiUrl: "http://cs.wikipedia.org/wiki/Jana_Bobo%C5%A1%C3%ADkov%C3%A1",
                     account: new Account(number: "1", balance: new BigDecimal("0"))).save(failOnError: true)
 
             new Candidate(
                     name: "Vladimír Dlouhý",
                     image: "vladimir_dlouhy.jpg",
+                    wikiUrl: "http://cs.wikipedia.org/wiki/Vladim%C3%ADr_Dlouh%C3%BD_(politik)",
                     account: new Account(number: "2", balance: new BigDecimal("0"))).save(failOnError: true)
 
             new Candidate(
                     name: "Taťána Fischerová",
                     image: "tatana_fischerova.jpg",
+                    wikiUrl:  "http://cs.wikipedia.org/wiki/T%C3%A1%C5%88a_Fischerov%C3%A1",
                     account: new Account(number: "3", balance: new BigDecimal("0"))).save(failOnError: true)
 
             new Candidate(
                     name: "Zuzana Roithová",
                     image: "zuzana_roithova.jpg",
+                    wikiUrl: "http://cs.wikipedia.org/wiki/Zuzana_Roithov%C3%A1",
                     account: new Account(number: "4", balance: new BigDecimal("0"))).save(failOnError: true)
 
 
             def zeman = new Candidate(
                     name: "Miloš Zeman",
                     image: "milos_zeman.jpg",
+                    wikiUrl: "http://cs.wikipedia.org/wiki/Milo%C5%A1_Zeman",
                     accountUrl: "http://www.csas.cz/banka/nav/o-nas/transparentni-ucet-23902000730800-d00018326"
             )
             zeman.account = new CeskaSporitelnaTransparentAccountInfoScraper(url: zeman.accountUrl).account
@@ -42,6 +47,7 @@ class BootStrap {
             def sobotka = new Candidate(
                     name: "Přemysl Sobotka",
                     image:  "premysl_sobotka.jpg",
+                    wikiUrl: "http://cs.wikipedia.org/wiki/P%C5%99emysl_Sobotka",
                     accountUrl: "http://www.csas.cz/banka/nav/o-nas/transparentni-ucet-28411593490800-d00018501"
             )
             sobotka.account = new CeskaSporitelnaTransparentAccountInfoScraper(url: sobotka.accountUrl).account
@@ -51,6 +57,7 @@ class BootStrap {
             def schwarzenberg = new Candidate(
                     name: "Karel Schwarzenberg",
                     image: "karel_schwarzenberg.jpg",
+                    wikiUrl: "http://cs.wikipedia.org/wiki/Karel_Schwarzenberg",
                     accountUrl: "http://www.csas.cz/banka/nav/o-nas/transparentni-ucet-28403923090800-d00018255"
             )
             schwarzenberg.account = new CeskaSporitelnaTransparentAccountInfoScraper(url: schwarzenberg.accountUrl).account
@@ -59,6 +66,7 @@ class BootStrap {
             def dienstbier = new Candidate(
                     name: "Jiří Dienstbier",
                     image: "jiri_dienstbier.jpg",
+                    wikiUrl: "http://cs.wikipedia.org/wiki/Ji%C5%99%C3%AD_Dienstbier_mlad%C5%A1%C3%AD",
                     accountUrl: "https://www.fio.cz/scgi-bin/hermes/dz-transparent.cgi?pohyby_DAT_od=16.07.2012&ID_ucet=2100280379"
             )
             dienstbier.account = new FioAccountInfoScraper(url: dienstbier.accountUrl).account
@@ -67,6 +75,7 @@ class BootStrap {
             def franz = new Candidate(
                     name: "Vladimír Franz",
                     image: "vladimir_franz.jpg",
+                    wikiUrl: "http://cs.wikipedia.org/wiki/Vladim%C3%ADr_Franz",
                     accountUrl: "https://www.fio.cz/scgi-bin/hermes/dz-transparent.cgi?pohyby_DAT_od=02.10.2012&ID_ucet=2600311696"
             )
             franz.account = new FioAccountInfoScraper(url: franz.accountUrl).account
@@ -75,6 +84,7 @@ class BootStrap {
             def tomio = new Candidate(
                     name: "Tomio Okamura",
                     image: "tomio_okamura.jpg",
+                    wikiUrl: "http://cs.wikipedia.org/wiki/Tomio_Okamura",
                     accountUrl: "http://www.rb.cz/firemni-finance/transparentni-ucty/?tr_acc=vypis&account_number=7287984001"
             )
             tomio.account = new RaiffeisenAccountInfoScrapper(url: tomio.accountUrl).account
@@ -83,6 +93,7 @@ class BootStrap {
             def fischer = new Candidate(
                     name: "Jan Fischer",
                     image: "jan_fischer.jpg",
+                    wikiUrl: "http://cs.wikipedia.org/wiki/Jan_Fischer",
                     accountUrl: "http://www.rb.cz/firemni-finance/transparentni-ucty/?tr_acc=vypis&account_number=22200011"
             )
             fischer.account = new RaiffeisenAccountInfoScrapper(url: fischer.accountUrl).account
