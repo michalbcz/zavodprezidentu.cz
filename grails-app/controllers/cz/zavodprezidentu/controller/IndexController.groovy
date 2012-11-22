@@ -5,6 +5,10 @@ import cz.zavodprezidentu.utils.Consts
 
 class IndexController {
 
+    def index() {
+        redirect(action: "expense")
+    }
+
     def balance() {
         def accounts = Account.listOrderByBalance()
         accounts = accounts.sort(byCandidateHasTransparentAccountComparator())

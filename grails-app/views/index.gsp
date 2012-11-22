@@ -73,8 +73,10 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a class="brand" href="/"><img src="${resource(dir: 'images', file: 'logo.png')}"/><span class="hidden-phone">Závod prezidentů</span></a>
-
+            <g:link class="brand" controller="index">
+                <img src="${resource(dir: 'images', file: 'logo.png')}"/>
+                <span class="hidden-phone">Závod prezidentů</span>
+            </g:link>
         </div>
     </div>
 </div>
