@@ -6,7 +6,7 @@ import cz.zavodprezidentu.utils.Consts
 class IndexController {
 
     def index() {
-        redirect(action: "expense")
+        redirect(action: "income")
     }
 
     def balance() {
