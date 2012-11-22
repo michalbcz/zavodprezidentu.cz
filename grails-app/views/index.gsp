@@ -171,7 +171,9 @@
                                             </a>
                                         </g:if>
                                         <g:else>
-                                            <span class="value">${formattedValue}</span>
+                                            <a href="http://aktualne.centrum.cz/ekonomika/vase-penize/clanek.phtml?id=761013">
+                                                <span class="novalue" title="Více se dozvíte, když kliknete.">nemá účet</span>
+                                            </a>
                                         </g:else>
                                     </div>
 
