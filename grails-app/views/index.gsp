@@ -163,7 +163,7 @@
                                         <input type="text" value="${Utils.getPercentage(Math.abs(account[key]), Math.abs(max))}" class="${nextColor.circleColor}"/>
                                     </div>
                                     <div class="box-header">
-                                        <h2>${account.candidate.name}</h2>
+                                        <h2>${account.candidate.name.replaceFirst(" ", "<br>")}</h2>
                                         <g:set var="formattedValue" value="${format.format(account[key]).replaceAll(" ", "&nbsp;")}"/>
                                         <g:if test="${account.candidate.accountUrl}">
                                             <a href="${account.candidate.accountUrl}">
