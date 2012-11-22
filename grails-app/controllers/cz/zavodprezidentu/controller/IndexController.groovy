@@ -5,12 +5,20 @@ import cz.zavodprezidentu.utils.Consts
 
 class IndexController {
 
+    def index() {
+        redirect(action: "income")
+    }
+
+    def about() {
+        render(view: "about")
+    }
+
     def balance() {
         def accounts = Account.listOrderByBalance()
         accounts = accounts.sort(byCandidateHasTransparentAccountComparator())
         accounts = accounts.reverse()
 
-        render(view: "/index", model: [
+        render(view: "index", model: [
                 accounts: accounts,
                 key: "balance",
                 title: "Zůstatky na účtu",
@@ -24,7 +32,7 @@ class IndexController {
         accounts = accounts.sort(byCandidateHasTransparentAccountComparator())
         accounts = accounts.reverse()
 
-        render(view: "/index", model: [
+        render(view: "index", model: [
             accounts: accounts,
                 key : "totalIncome",
                 title: "Celkové příjmy",
@@ -37,7 +45,7 @@ class IndexController {
         def accounts = Account.listOrderByTotalSpend()
         accounts = accounts.sort(reverse(byCandidateHasTransparentAccountComparator()))
 
-        render(view: "/index", model: [
+        render(view: "index", model: [
                 accounts: accounts,
                 key : "totalSpend",
                 title: "Celkové výdaje",
@@ -50,7 +58,7 @@ class IndexController {
         def accounts = Account.listOrderByIncomingTransactions().reverse()
         accounts = accounts.sort(reverse(byCandidateHasTransparentAccountComparator()))
 
-        render(view: "/index", model: [
+        render(view: "index", model: [
                 accounts: accounts,
                 key : "incomingTransactions",
                 title: "Počet příspěvků",

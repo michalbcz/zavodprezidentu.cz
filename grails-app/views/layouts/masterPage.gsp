@@ -73,8 +73,10 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a class="brand" href="/"><img src="${resource(dir: 'images', file: 'logo.png')}"/><span class="hidden-phone">Závod prezidentů</span></a>
-
+            <g:link class="brand" controller="index">
+                <img src="${resource(dir: 'images', file: 'logo.png')}"/>
+                <span class="hidden-phone">Závod prezidentů</span>
+            </g:link>
         </div>
     </div>
 </div>
@@ -87,10 +89,11 @@
         <div class="span2 main-menu-span">
             <div class="nav-collapse sidebar-nav">
                 <ul class="nav nav-tabs nav-stacked main-menu">
-                    <li><g:link controller='index' action='balance'><i class="icon-home icon-white"></i><span class="hidden-tablet">Zůstatky</span></g:link></li>
+                    <li><g:link controller='index' action='about'><i class="icon-question-sign icon-white"></i><span class="hidden-tablet">O aplikaci</span></g:link></li>
                     <li><g:link controller='index' action='income'><i class="icon-plus-sign icon-white"></i><span class="hidden-tablet">Příjmy</span></g:link></li>
                     <li><g:link controller='index' action='expense'><i class="icon-minus-sign icon-white"></i><span class="hidden-tablet">Výdaje</span></g:link></li>
                     <li><g:link controller='index' action='transactions'><i class="icon-comment icon-white"></i><span class="hidden-tablet">Příspěvky</span></g:link></li>
+                    <li><g:link controller='index' action='balance'><i class="icon-home icon-white"></i><span class="hidden-tablet">Zůstatky</span></g:link></li>
                 </ul>
 
                 <div id="social" class="hidden-tablet hidden-phone">
@@ -119,67 +122,8 @@
             <!-- start: Content -->
 
             <div class="row-fluid">
-                <div class="box">
-                    <div class="box-content">
-                        <h1>${title}</h1>
-                    </div>
-                </div>
-                <% def colorer = new Colorer() %>
-                <div class="circleStats">
-                    <g:each in="${accounts}" var="account" status="index">
-                        <% def nextColor = colorer.nextByLogoColours() %>
-
-                        <g:set var="budikId" value="budik${index}"/>
-
-                        <script type="text/javascript">
-                            jQuery(document).ready(function($) {
-                               $("${budikId}").click(function() {
-                                  window.location.href = "${account.candidate.wikiUrl}";
-                               });
-                            });
-                        </script>
-
-                        <g:if test="${account.candidate.wikiUrl}">
-                        <a href="${account.candidate.wikiUrl}">
-                        </g:if>
-                            <div id="${budikId}" class="span2 budik"
-                                 onTablet="span4"
-                                 onDesktop="span2"
-                                 <g:if test="${account.candidate.accountUrl == null}"> title="Kandidát nemá zřízen transparentní účet."</g:if>>
-
-                                    <g:if test="${account.candidate.accountUrl}">
-                                        <div class="circleStatsItem ${nextColor.color}" style="background-image: url(${resource(dir: 'images/kandidati', file: account.candidate.image)});">
-                                    </g:if>
-                                    <g:else>
-                                        <div class="circleStatsItem ${nextColor.color} no-data" style="background-image: url(${resource(dir: 'images/kandidati', file: account.candidate.image)});">
-                                    </g:else>
-
-                                        <!-- <i class="fa-icon-user"></i> -->
-        <!--                                <span class="plus">+</span>
-                                        <span class="percent">%</span>
-        -->
-                                        <input type="text" value="${Utils.getPercentage(Math.abs(account[key]), Math.abs(max))}" class="${nextColor.circleColor}"/>
-                                    </div>
-                                    <div class="box-header">
-                                        <h2>${account.candidate.name}</h2>
-                                        <g:set var="formattedValue" value="${format.format(account[key]).replaceAll(" ", "&nbsp;")}"/>
-                                        <g:if test="${account.candidate.accountUrl}">
-                                            <a href="${account.candidate.accountUrl}">
-                                            <span class="value">${formattedValue}</span>
-                                            </a>
-                                        </g:if>
-                                        <g:else>
-                                            <span class="value">${formattedValue}</span>
-                                        </g:else>
-                                    </div>
-
-                            </div>
-                        <g:if test="${account.candidate.wikiUrl}">
-                        </a>
-                        </g:if>
-                    </g:each>
-                </div>
-
+             <!-- <g:pageProperty name="page.content"/>-->
+             <g:layoutBody/>
             </div>
 
             <hr>
@@ -197,9 +141,9 @@
 
                 <div class="clearfix"></div>
             </footer>
-            </div>
-        </div><!--/.fluid-container-->
-    </div>
+        </div>
+    </div><!--/.fluid-container-->
+</div>
 </div>
 
 
@@ -245,15 +189,15 @@
 <script src="${resource(dir: 'js', file: 'custom.js')}"></script>
 <script type="text/javascript">
 
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-36387794-1']);
-  _gaq.push(['_trackPageview']);
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36387794-1']);
+    _gaq.push(['_trackPageview']);
 
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
 
 </script>
 
