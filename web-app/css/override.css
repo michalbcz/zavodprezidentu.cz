@@ -68,3 +68,7 @@ a.brand span {
     position: fixed;
     bottom: 20px;
 }
+
+#aboutPage a {
+    font-weight: bold;
+}
