@@ -10,19 +10,6 @@ class BootStrap {
     def init = { servletContext ->
 
             new Candidate(
-                    name: "Jana Bobošíková",
-                    image: "jana_bobosikova.jpg",
-                    accountUrl: null,
-                    wikiUrl: "http://cs.wikipedia.org/wiki/Jana_Bobo%C5%A1%C3%ADkov%C3%A1",
-                    account: new Account(number: "1", balance: new BigDecimal("0"))).save(failOnError: true)
-
-            new Candidate(
-                    name: "Vladimír Dlouhý",
-                    image: "vladimir_dlouhy.jpg",
-                    wikiUrl: "http://cs.wikipedia.org/wiki/Vladim%C3%ADr_Dlouh%C3%BD_(politik)",
-                    account: new Account(number: "2", balance: new BigDecimal("0"))).save(failOnError: true)
-
-            new Candidate(
                     name: "Taťána Fischerová",
                     image: "tatana_fischerova.jpg",
                     wikiUrl:  "http://cs.wikipedia.org/wiki/T%C3%A1%C5%88a_Fischerov%C3%A1",
@@ -81,16 +68,7 @@ class BootStrap {
             franz.account = new FioAccountInfoScraper(url: franz.accountUrl).account
             franz.save(failOnError: true)
 
-            def tomio = new Candidate(
-                    name: "Tomio Okamura",
-                    image: "tomio_okamura.jpg",
-                    wikiUrl: "http://cs.wikipedia.org/wiki/Tomio_Okamura",
-                    accountUrl: "http://www.rb.cz/firemni-finance/transparentni-ucty/?tr_acc=vypis&account_number=7287984001"
-            )
-            tomio.account = new RaiffeisenAccountInfoScrapper(url: tomio.accountUrl).account
-            tomio.save(failOnError: true)
-
-            def fischer = new Candidate(
+                def fischer = new Candidate(
                     name: "Jan Fischer",
                     image: "jan_fischer.jpg",
                     wikiUrl: "http://cs.wikipedia.org/wiki/Jan_Fischer",
