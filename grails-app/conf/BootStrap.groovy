@@ -68,7 +68,7 @@ class BootStrap {
             franz.account = new FioAccountInfoScraper(url: franz.accountUrl).account
             franz.save(failOnError: true)
 
-                def fischer = new Candidate(
+            def fischer = new Candidate(
                     name: "Jan Fischer",
                     image: "jan_fischer.jpg",
                     wikiUrl: "http://cs.wikipedia.org/wiki/Jan_Fischer",
