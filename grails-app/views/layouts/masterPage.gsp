@@ -89,11 +89,11 @@
         <div class="span2 main-menu-span">
             <div class="nav-collapse sidebar-nav">
                 <ul class="nav nav-tabs nav-stacked main-menu">
-                    <li><g:link controller='index' action='about'><i class="icon-question-sign icon-white"></i><span class="hidden-tablet">O aplikaci</span></g:link></li>
                     <li><g:link controller='index' action='income'><i class="icon-plus-sign icon-white"></i><span class="hidden-tablet">Příjmy</span></g:link></li>
                     <li><g:link controller='index' action='expense'><i class="icon-minus-sign icon-white"></i><span class="hidden-tablet">Výdaje</span></g:link></li>
                     <li><g:link controller='index' action='transactions'><i class="icon-comment icon-white"></i><span class="hidden-tablet">Příspěvky</span></g:link></li>
                     <li><g:link controller='index' action='balance'><i class="icon-home icon-white"></i><span class="hidden-tablet">Zůstatky</span></g:link></li>
+                    <li><g:link controller='index' action='about'><i class="icon-question-sign icon-white"></i><span class="hidden-tablet">O aplikaci</span></g:link></li>
                 </ul>
 
                 <div id="social" class="hidden-tablet hidden-phone">
