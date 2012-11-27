@@ -16,14 +16,6 @@
 
             <g:set var="budikId" value="budik${index}"/>
 
-            <script type="text/javascript">
-                jQuery(document).ready(function ($) {
-                    $("${budikId}").click(function () {
-                        window.location.href = "${account.candidate.wikiUrl}";
-                    });
-                });
-            </script>
-
             <g:if test="${account.candidate.wikiUrl}">
                 <a href="${account.candidate.wikiUrl}">
             </g:if>
