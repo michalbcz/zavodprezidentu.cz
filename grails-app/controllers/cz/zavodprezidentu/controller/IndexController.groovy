@@ -6,7 +6,7 @@ import cz.zavodprezidentu.utils.Consts
 class IndexController {
 
     def index() {
-        redirect(action: "income")
+        forward(action: "income")
     }
 
     def about() {
