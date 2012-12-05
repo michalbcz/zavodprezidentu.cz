@@ -72,3 +72,7 @@ a.brand span {
 #aboutPage a {
     font-weight: bold;
 }
+
+#content {
+    min-height: 830px;
+}
