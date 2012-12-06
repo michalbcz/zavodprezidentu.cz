@@ -6,6 +6,7 @@
     <div class="box">
         <div class="box-content">
             <h1>${title}</h1>
+            <h6>Stav k ${Consts.DATE_FORMAT.format(lastRun)}</h6>
         </div>
     </div>
 
