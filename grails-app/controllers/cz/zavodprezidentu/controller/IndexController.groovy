@@ -26,7 +26,8 @@ class IndexController {
                 title: "Zůstatky na účtu",
                 max: accounts[0].balance * 1.1,
                 format: Consts.NUMBER_FORMAT_CURRENCY,
-                lastRun: lastRun
+                lastRun: lastRun,
+                description: "Aktuální zůstatky na účtu podle výpisu z banky"
         ])
     }
 
@@ -42,7 +43,8 @@ class IndexController {
                 title: "Celkové příjmy",
                 max: accounts[0].totalIncome * 1.1,
                 format: Consts.NUMBER_FORMAT_CURRENCY,
-                lastRun: lastRun
+                lastRun: lastRun,
+                description: "Součty všech příchozích plateb na účet"
         ])
     }
 
@@ -57,7 +59,8 @@ class IndexController {
                 title: "Celkové výdaje",
                 max: accounts[0].totalSpend * 1.1,
                 format: Consts.NUMBER_FORMAT_CURRENCY,
-                lastRun: lastRun
+                lastRun: lastRun,
+                description: "Součty všech odchozích plateb z účtu"
         ])
     }
 
@@ -72,7 +75,8 @@ class IndexController {
                 title: "Počet příspěvků",
                 max: accounts[0].incomingTransactions * 1.1,
                 format: Consts.NUMBER_FORMAT,
-                lastRun: lastRun
+                lastRun: lastRun,
+                description: "Počet příchozích transakcí na účet"
         ])
     }
 
