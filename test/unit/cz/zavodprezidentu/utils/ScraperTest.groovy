@@ -11,7 +11,7 @@ import static org.junit.Assert.*
 /**
  * @author Michal Bernhard (michal@bernhard.cz) 2012
  */
-class ScrapersTest {
+class ScraperTest {
 
     @Test void "should return scraper for Raiffaisen bank"() {
         def url = "http://www.rb.cz/firemni-finance/transparentni-ucty/?tr_acc=vypis&account_number=22200011"

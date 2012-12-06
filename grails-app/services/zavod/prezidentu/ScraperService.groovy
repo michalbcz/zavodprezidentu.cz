@@ -2,6 +2,7 @@ package zavod.prezidentu
 
 import cz.zavodprezidentu.domain.Account
 import cz.zavodprezidentu.domain.Candidate
+import cz.zavodprezidentu.domain.Scraper
 import cz.zavodprezidentu.scraper.account.scrappers.CeskaSporitelnaTransparentAccountInfoScraper
 import cz.zavodprezidentu.scraper.account.scrappers.FioAccountInfoScraper
 import cz.zavodprezidentu.scraper.account.scrappers.RaiffeisenAccountInfoScrapper
@@ -15,6 +16,9 @@ class ScraperService {
         log.info("Deleting all candidates if exsists in db.")
         def allCandidates = Candidate.findAll()
         allCandidates*.delete(flush: true) /* need to flush ie delete immediately otherwise saving fails */
+
+        def lastScraperRun = Scraper.findAll()
+        lastScraperRun*.delete(flush: true)
 
         log.info("Deleted ${allCandidates.size()} candidates")
 
@@ -87,6 +91,9 @@ class ScraperService {
         )
         fischer.account = new RaiffeisenAccountInfoScrapper(url: fischer.accountUrl).account
         fischer.save(failOnError: true)
+
+        Scraper lastRun = new Scraper(lastRun: new Date())
+        lastRun.save(failOnError: true)
 
         log.info("Scraped and saved ${allCandidates.size()} candidates!")
     }
