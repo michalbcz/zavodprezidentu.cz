@@ -95,6 +95,7 @@ class ScraperService {
         Scraper lastRun = new Scraper(lastRun: new Date())
         lastRun.save(failOnError: true)
 
-        log.info("Scraped and saved ${allCandidates.size()} candidates!")
+        allCandidates = Candidate.findAll()
+        log.info("Candidates successfully scraped and saved!")
     }
 }
