@@ -6,6 +6,7 @@ import cz.zavodprezidentu.domain.Scraper
 import cz.zavodprezidentu.scraper.account.scrappers.CeskaSporitelnaTransparentAccountInfoScraper
 import cz.zavodprezidentu.scraper.account.scrappers.FioAccountInfoScraper
 import cz.zavodprezidentu.scraper.account.scrappers.RaiffeisenAccountInfoScrapper
+import cz.zavodprezidentu.scraper.account.scrappers.RoithovaAccountInfoScraper
 import cz.zavodprezidentu.utils.Scrapers
 
 class ScraperService {
@@ -24,17 +25,21 @@ class ScraperService {
 
         log.info("Scraping and saving candidates...")
 
-        new Candidate(
+        def fisherova = new Candidate(
                 name: "Taťána Fischerová",
                 image: "tatana_fischerova.jpg",
                 wikiUrl:  "http://cs.wikipedia.org/wiki/T%C3%A1%C5%88a_Fischerov%C3%A1",
-                account: new Account(number: "3", balance: new BigDecimal("0"))).save(failOnError: true)
+                accountUrl: "https://www.fio.cz/scgi-bin/hermes/dz-transparent.cgi?ID_ucet=2900301705")
+        fisherova.account = new FioAccountInfoScraper(url: fisherova.accountUrl).account
+        fisherova.save()
 
-        new Candidate(
+        def roithova = new Candidate(
                 name: "Zuzana Roithová",
                 image: "zuzana_roithova.jpg",
                 wikiUrl: "http://cs.wikipedia.org/wiki/Zuzana_Roithov%C3%A1",
-                account: new Account(number: "4", balance: new BigDecimal("0"))).save(failOnError: true)
+                accountUrl: "http://www.roithova.cz/vypis_z_uctu/")
+        roithova.account = new RoithovaAccountInfoScraper(url: roithova.accountUrl).account
+        roithova.save()
 
 
         def zeman = new Candidate(
@@ -72,7 +77,7 @@ class ScraperService {
                 accountUrl: "https://www.fio.cz/scgi-bin/hermes/dz-transparent.cgi?pohyby_DAT_od=16.07.2012&ID_ucet=2100280379"
         )
         dienstbier.account = new FioAccountInfoScraper(url: dienstbier.accountUrl).account
-        dienstbier.save(failOnError: true)
+        dienstbier.save()
 
         def franz = new Candidate(
                 name: "Vladimír Franz",
@@ -81,7 +86,7 @@ class ScraperService {
                 accountUrl: "https://www.fio.cz/scgi-bin/hermes/dz-transparent.cgi?pohyby_DAT_od=02.10.2012&ID_ucet=2600311696"
         )
         franz.account = new FioAccountInfoScraper(url: franz.accountUrl).account
-        franz.save(failOnError: true)
+        franz.save()
 
         def fischer = new Candidate(
                 name: "Jan Fischer",
@@ -90,11 +95,19 @@ class ScraperService {
                 accountUrl: "http://www.rb.cz/firemni-finance/transparentni-ucty/?tr_acc=vypis&account_number=22200011"
         )
         fischer.account = new RaiffeisenAccountInfoScrapper(url: fischer.accountUrl).account
-        fischer.save(failOnError: true)
+        fischer.save()
+
+        def bobosikova = new Candidate(
+                name: "Jana Bobošíková",
+                image: "jana_bobosikova.jpg",
+                accountUrl: null,
+                wikiUrl: "http://cs.wikipedia.org/wiki/Jana_Bobo%C5%A1%C3%ADkov%C3%A1")
+        bobosikova.save()
 
         Scraper lastRun = new Scraper(lastRun: new Date())
         lastRun.save(failOnError: true)
 
-        log.info("Scraped and saved ${allCandidates.size()} candidates!")
+        allCandidates = Candidate.findAll()
+        log.info("Candidates successfully scraped and saved!")
     }
 }

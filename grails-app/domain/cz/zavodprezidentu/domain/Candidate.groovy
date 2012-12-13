@@ -2,7 +2,7 @@ package cz.zavodprezidentu.domain
 
 class Candidate {
     String name
-    Account account
+    Account account = new Account(number: "", balance: 0)
     String image
     String accountUrl
     String wikiUrl

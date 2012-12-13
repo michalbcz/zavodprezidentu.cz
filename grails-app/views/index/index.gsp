@@ -7,6 +7,7 @@
         <div class="box-content">
             <h1>${title}&nbsp;<span class="badge" rel="tooltip" data-placement="top" data-original-title="${description}">?</span></h1>
             <h6>Stav k ${Consts.DATE_FORMAT.format(lastRun)}</h6>
+            <div style="display: none">${lastRun}</div>
         </div>
     </div>
 
@@ -60,5 +61,4 @@
             </g:if>
         </g:each>
     </div>
-
 </g:applyLayout>

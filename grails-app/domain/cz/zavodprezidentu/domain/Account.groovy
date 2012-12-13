@@ -13,7 +13,7 @@ class Account {
 
     static constraints = {
         bank(nullable: true)
-        number(unique: true)
+        number()
         balance()
         totalIncome()
         totalSpend()
