@@ -92,6 +92,14 @@ class ScraperService {
         fischer.account = new RaiffeisenAccountInfoScrapper(url: fischer.accountUrl).account
         fischer.save(failOnError: true)
 
+        def bobosikova = new Candidate(
+                name: "Jana Bobošíková",
+                image: "jana_bobosikova.jpg",
+                accountUrl: null,
+                wikiUrl: "http://cs.wikipedia.org/wiki/Jana_Bobo%C5%A1%C3%ADkov%C3%A1",
+                account: new Account(number: "1", balance: new BigDecimal("0")))
+        bobosikova.save()
+
         Scraper lastRun = new Scraper(lastRun: new Date())
         lastRun.save(failOnError: true)
 
