@@ -10,7 +10,7 @@ class Consts {
     public static final NumberFormat NUMBER_FORMAT_CURRENCY = NumberFormat.getCurrencyInstance(CZECH);
     public static final NumberFormat NUMBER_FORMAT = NumberFormat.getInstance(CZECH);
 
-    public static final DateFormat DATE_FORMAT = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT, CZECH);
+    public static final DateFormat DATE_FORMAT = DateFormat.getDateInstance(DateFormat.SHORT, CZECH);
 
     static {
         Consts.NUMBER_FORMAT_CURRENCY.setMinimumFractionDigits(2);
