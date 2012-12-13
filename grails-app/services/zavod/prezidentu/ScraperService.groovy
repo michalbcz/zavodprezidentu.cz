@@ -27,7 +27,9 @@ class ScraperService {
         def fisherova = new Candidate(
                 name: "Taťána Fischerová",
                 image: "tatana_fischerova.jpg",
-                wikiUrl:  "http://cs.wikipedia.org/wiki/T%C3%A1%C5%88a_Fischerov%C3%A1")
+                wikiUrl:  "http://cs.wikipedia.org/wiki/T%C3%A1%C5%88a_Fischerov%C3%A1",
+                accountUrl: "https://www.fio.cz/scgi-bin/hermes/dz-transparent.cgi?ID_ucet=2900301705")
+        fisherova.account = new FioAccountInfoScraper(url: fisherova.accountUrl).account
         fisherova.save()
 
         def roithova = new Candidate(
