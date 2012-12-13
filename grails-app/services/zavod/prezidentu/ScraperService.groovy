@@ -6,6 +6,7 @@ import cz.zavodprezidentu.domain.Scraper
 import cz.zavodprezidentu.scraper.account.scrappers.CeskaSporitelnaTransparentAccountInfoScraper
 import cz.zavodprezidentu.scraper.account.scrappers.FioAccountInfoScraper
 import cz.zavodprezidentu.scraper.account.scrappers.RaiffeisenAccountInfoScrapper
+import cz.zavodprezidentu.scraper.account.scrappers.RoithovaAccountInfoScraper
 import cz.zavodprezidentu.utils.Scrapers
 
 class ScraperService {
@@ -35,7 +36,9 @@ class ScraperService {
         def roithova = new Candidate(
                 name: "Zuzana Roithová",
                 image: "zuzana_roithova.jpg",
-                wikiUrl: "http://cs.wikipedia.org/wiki/Zuzana_Roithov%C3%A1")
+                wikiUrl: "http://cs.wikipedia.org/wiki/Zuzana_Roithov%C3%A1",
+                accountUrl: "http://www.roithova.cz/vypis_z_uctu/")
+        roithova.account = new RoithovaAccountInfoScraper(url: roithova.accountUrl).account
         roithova.save()
 
 
