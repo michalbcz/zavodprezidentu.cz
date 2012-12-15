@@ -42,7 +42,7 @@ class RoithovaAccountInfoScraper implements AccountInfoScraper {
             }
         }
 
-        account.balance = account.totalIncome - account.totalSpend
+        account.balance = account.totalIncome - Math.abs(account.totalSpend)
 
         log.debug "Scraped ${account.items.size()} items."
         return account
