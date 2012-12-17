@@ -21,17 +21,15 @@ class FioAccountInfoScraper implements AccountInfoScraper {
         def account = new Account()
         account.bank = BANK_NAME;
 
-        Document document = Jsoup.connect(url.toString()).get()
+        Document document = Jsoup.connect(url.toString()).timeout(20000 /* == 20 seconds */).get()
 
-        Element e = document.select(
-                "span.main_header_row_text")[1]
-        //"table.summary td.last"
+        Element e = document.select("span.main_header_row_text")[1]
         account.number = (e =~ /(\d+\/\d+)/)[0][0]
-        account.balance = toBigDecimal(document.select("table.summary td.last")[0].html())
+        account.balance = toBigDecimal(document.select("table.summary td.last")[0].text())
 
         def rows = document.select("table.main tbody tr")
-        //remove last (total) row
-        rows.remove(rows.size() - 1)
+        def lastRowIndex = rows.size() - 1
+        rows.remove(lastRowIndex)
 
         account.items = []
         account.totalSpend = 0
@@ -57,7 +55,7 @@ class FioAccountInfoScraper implements AccountInfoScraper {
         TransactionItem item = new TransactionItem()
         try {
             item.with {
-                amount = toBigDecimal(e.select("td")[1].html())
+                amount = toBigDecimal(e.select("td")[1].text())
             }
         } catch (Exception exception) {
             log.error("Cannot parse row: ${e}", exception)
