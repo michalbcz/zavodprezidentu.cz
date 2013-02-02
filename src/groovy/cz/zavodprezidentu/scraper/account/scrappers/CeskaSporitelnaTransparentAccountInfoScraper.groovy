@@ -25,7 +25,7 @@ class CeskaSporitelnaTransparentAccountInfoScraper implements AccountInfoScraper
         Document document = Jsoup.connect(url.toString()).get()
         def Account account = new Account()
 
-        def accountBalanceText = document.select(".document-content strong").last().text()
+        def accountBalanceText = document.select(".document-content strong:containsOwn(CZK)").text()
         account.balance = parseAmount(accountBalanceText)
         account.number = (document.select("div.title").html() =~ /(\d+\/\d+)/)[0][0]
         account.items = []
@@ -54,6 +54,7 @@ class CeskaSporitelnaTransparentAccountInfoScraper implements AccountInfoScraper
 
     }
 
+    @SuppressWarnings("GrMethodMayBeStatic")
     private Number parseAmount(String amountAsText) {
 
         def amountAsTextNormalized = amountAsText - "CZK" // remove currency
