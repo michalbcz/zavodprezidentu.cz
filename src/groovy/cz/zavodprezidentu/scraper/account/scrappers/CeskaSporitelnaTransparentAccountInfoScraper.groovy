@@ -3,13 +3,17 @@ package cz.zavodprezidentu.scraper.account.scrappers
 import cz.zavodprezidentu.domain.Account
 import cz.zavodprezidentu.domain.TransactionItem
 import cz.zavodprezidentu.scraper.account.AccountInfoScraper
+import org.apache.commons.logging.LogFactory
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
+import org.springframework.util.Assert
 
 import java.text.NumberFormat
 
 class CeskaSporitelnaTransparentAccountInfoScraper implements AccountInfoScraper {
+
+    private static final log = LogFactory.getLog(this)
 
     def private String url
 
@@ -22,7 +26,7 @@ class CeskaSporitelnaTransparentAccountInfoScraper implements AccountInfoScraper
 
     @Override
     Account getAccount() {
-        Document document = Jsoup.connect(url.toString()).get()
+        Document document = Jsoup.connect(url).get()
         def Account account = new Account()
 
         def accountBalanceText = document.select(".document-content strong:containsOwn(CZK)").text()
@@ -32,25 +36,58 @@ class CeskaSporitelnaTransparentAccountInfoScraper implements AccountInfoScraper
         account.totalSpend = 0
         account.totalIncome = 0
 
+        def transactionItems = crawlAndParsePagesStartingAt(url)
+
+        transactionItems.each { transactionItem ->
+            transactionItem.account = account
+            account.items << transactionItem
+            if (transactionItem.amount > 0) {
+                account.totalIncome += transactionItem.amount
+                account.incomingTransactions += 1
+            } else {
+                account.totalSpend += transactionItem.amount
+            }
+        }
+
+        log.debug "Scraped ${account.items.size()} items."
+        return account
+
+    }
+
+    private List<TransactionItem> crawlAndParsePagesStartingAt(String pageUrl) {
+
+        log.debug("Parsing page at url : $pageUrl")
+
+        Document document = Jsoup.connect(pageUrl).get()
+
+
         def rows = document.select("table.redheading tr")
         //skip header
         rows.remove(0)
-
-        rows.each {row ->
-            def item = parseRow(row)
-            if (item != null) {
-                item.account = account
-                account.items << item
-                if (item.amount > 0) {
-                    account.totalIncome += item.amount
-                    account.incomingTransactions += 1
-                } else {
-                    account.totalSpend += item.amount
-                }
-            }
+        def transactionItems = rows.collect { row ->
+            parseRow(row)
         }
-        log.debug "Scraped ${account.items.size()} items."
-        return account
+
+        log.debug(
+                "Parsing page at url : ${pageUrl} DONE! " +
+                "Number of scraped transaction items: ${transactionItems.size()}")
+
+        def nextPageLinkElement = document.select("a:contains(Přejít na následující)")
+        if (!nextPageLinkElement.isEmpty()) {
+
+            def numberOfNextPageLinks = nextPageLinkElement.size()
+            Assert.isTrue(
+                    numberOfNextPageLinks == 1,
+                    "We assume that only one link to next page exist on the" +
+                    "page. But we found ${numberOfNextPageLinks} links.")
+
+            def nextPageUrl = nextPageLinkElement.first().absUrl("href")
+            log.debug("Page contains link to next page (${nextPageUrl})")
+            transactionItems += crawlAndParsePagesStartingAt(nextPageUrl)
+
+        }
+
+        return transactionItems
 
     }
 
@@ -66,10 +103,6 @@ class CeskaSporitelnaTransparentAccountInfoScraper implements AccountInfoScraper
         return amount
     }
 
-    /**
-     * @param row
-     * @return
-     */
     def TransactionItem parseRow(Element row) {
         TransactionItem item = new TransactionItem()
         String s = row.select("td")[4].html()
@@ -81,4 +114,5 @@ class CeskaSporitelnaTransparentAccountInfoScraper implements AccountInfoScraper
 
         return item
     }
+
 }
