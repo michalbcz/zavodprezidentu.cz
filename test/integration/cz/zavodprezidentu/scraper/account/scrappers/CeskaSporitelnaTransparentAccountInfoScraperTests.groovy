@@ -27,7 +27,7 @@ class CeskaSporitelnaTransparentAccountInfoScraperTests {
 
     @Test
     public void testAccountNumber() {
-        assertEquals("2840392309/0800", account.number)
+        assertEquals("2390200073/0800", account.number)
     }
 
     @Test
