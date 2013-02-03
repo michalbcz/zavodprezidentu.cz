@@ -20,7 +20,7 @@ class CeskaSporitelnaTransparentAccountInfoScraperTests {
 
     @Before
     public void beforeEachTestMethod() {
-        URL url = new URL("http://www.csas.cz/banka/nav/o-nas/transparentni-ucet-28403923090800-d00018255")
+        URL url = new URL("http://www.csas.cz/banka/nav/o-nas/transparentni-ucet-23902000730800-d00018326")
         def scraper = new CeskaSporitelnaTransparentAccountInfoScraper(url: url)
         account = scraper.getAccount()
     }
