@@ -1,59 +1,34 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs">
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta http-equiv="Content-language" content="cs" />
-    <meta name="robots" content="all,index,follow" />
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <meta name="copyright" content="Raiffeisenbank" />
-    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
-    <meta name="revisit-after" content="1 Day" />
-    <meta http-equiv="MSThemeCompatible" content="no" />
-    <meta http-equiv="imagetoolbar" content="no" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-language" content="cs"/>
+    <meta name="robots" content="all,index,follow"/>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <meta name="copyright" content="Raiffeisenbank"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8"/>
+    <meta name="revisit-after" content="1 Day"/>
+    <meta http-equiv="MSThemeCompatible" content="no"/>
+    <meta http-equiv="imagetoolbar" content="no"/>
     <title>
-
-
-
-
         Raiffeisenbank - banka inspirovaná klienty
-
-
     </title>
-    <link rel="shortcut icon" type="image/x-icon" href="/views/common/img/favicon.ico" />
-    <link rel="stylesheet" type="text/css" href="/views/common/css/screen.css" media="screen,projection" />
-    <link rel="stylesheet" type="text/css" href="/views/common/css/screen-lgs.css" media="screen,projection" />
-    <link rel="stylesheet" type="text/nosense" href="/views/common/css/screen-opera.css" media="screen,projection" />
-    <link rel="stylesheet" type="text/css" href="/views/common/css/print.css" media="print" />
-    <link rel="stylesheet" type="text/css" href="/views/common/css/kalkulacka-epujcky.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="/views/common/img/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="/views/common/css/screen.css" media="screen,projection"/>
+    <link rel="stylesheet" type="text/css" href="/views/common/css/screen-lgs.css" media="screen,projection"/>
+    <link rel="stylesheet" type="text/nosense" href="/views/common/css/screen-opera.css" media="screen,projection"/>
+    <link rel="stylesheet" type="text/css" href="/views/common/css/print.css" media="print"/>
+    <link rel="stylesheet" type="text/css" href="/views/common/css/kalkulacka-epujcky.css"/>
     <!--[if IE 7.0 ]>
-    <link rel="stylesheet" type="text/css" href="/views/common/css/screen-msie7.css" media="screen,projection" />
+    <link rel="stylesheet" type="text/css" href="/views/common/css/screen-msie7.css" media="screen,projection"/>
     <![endif]-->
     <!--[if lte IE 6.0 ]>
-    <link rel="stylesheet" type="text/css" href="/views/common/css/screen-msie.css" media="screen,projection" />
+    <link rel="stylesheet" type="text/css" href="/views/common/css/screen-msie.css" media="screen,projection"/>
     <![endif]-->
     <!--[if lte IE 5.500 ]>
-    <link rel="stylesheet" type="text/css" href="/views/common/css/screen-msie5.css" media="screen,projection" />
+    <link rel="stylesheet" type="text/css" href="/views/common/css/screen-msie5.css" media="screen,projection"/>
     <![endif]-->
     <script type="text/javascript" src="/views/common/js/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="/views/common/js/jquery-ui-1.8.14.custom.min.js"></script>
@@ -72,10 +47,13 @@
         _gaq.push(['_setDomainName', 'www.rb.cz']);
         _gaq.push(['_trackPageview']);
 
-        (function() {
-            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
             ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
         })();
     </script>
 </head>
@@ -85,201 +63,503 @@
 <div id="page">
 
 
+    <div id="header">
+        <h1><a href="/">Raiffeisen Bank<span>&#160;</span></a></h1>
+
+        <p class="spaceman">
+            <a href="#vstup">[ &#8595; vstup na ú?et &#8595; ]</a>
+            <a href="#menu">[ &#8595; k menu &#8595; ]</a>
+            <a href="#fastnav">[ &#8595; k rychlé navigaci &#8595; ]</a>
+            <a href="#topmenu">[ &#8595; k vedlejší navigaci &#8595; ]</a>
+        </p>
+        <fieldset>
+            <legend>Vyhledávání</legend>
+
+            <form name="search" action="/search_results/" method="get">
+                <!--
+                <p>
+                  <a href="/search_advanced/" class="more">rozší?ené vyhledávání</a>
+                </p>
+                -->
+                <label for="search-input">vyhledávání …</label>
+                <input name="query" value="" type="text" id="search-input"/>
+                <input name="newpage" type="hidden" value="0"/>
+                <input name="root" type="hidden" value="search_results"/>
+                <input type="submit" id="submit" value="hledat"/>
+            </form>
+        </fieldset>
+        <p><a class="spaceman">Infolinka: 800 900 900</a></p>
+    </div>
+    <!-- Hlavicka konec -->
+
+    <hr class="nod"/>
+
+    <div id="text2"><!-- TEXT2 -->
+
+        <!--<p id="breadcrumbs">
+          <a href="/">Úvodní stránka</a><span>Firemní finance</span>
+        </p>-->
+
+        <hr class="nod"/>
+
+        <div id="login"><h2 id="vstup"><a class="wait" href="/textlogin/">Vstup na ú?et</a></h2>
+            <ul>
+                <li><a onClick="javascript: _gaq.push(['_trackPageview', 'bankaMEK-vp5']);"
+                       href="http://www.rb.cz/attachements/logonBanka/CZ/bankaMEK.html">Mobilní klí?</a></li>
+                <li><a onClick="javascript: _gaq.push(['_trackPageview', 'bankaOEK-vp6']);"
+                       href="http://www.rb.cz/attachements/logonBanka/CZ/bankaOEK.html">Osobní klí?</a></li>
+                <li><a onClick="javascript: _gaq.push(['_trackPageview', 'bankaIEK-vp7']);"
+                       href="http://www.rb.cz/attachements/logonBanka/CZ/bankaIEK.html">Internetový klí?</a></li>
+                <li class="heslo1"><a onClick="javascript: _gaq.push(['_trackPageview', 'rb-internetbanking-vp8']);"
+                                      href="https://ibs.rb.cz/IB/ControllerServlet"><big>RB</big> Internetbanking</a>
+                </li>
+                <li class="heslo"><a
+                        onClick="javascript: _gaq.push(['_trackPageview', 'rb-internetbanking-nahled-uctu-vp9']);"
+                        href="https://ibs.rb.cz/IB/ControllerServlet?command=channel_getLoginPagePSD">Náhled ú?tu</a>
+                </li>
+            </ul>
+        </div>
+
+        <hr class="nod"/>
+
+        <div id="prava-cast">
+            <h1 class="seda"><span>Detail Transparentního ú?tu</span></h1>
+
+            <h2>Pohyby na transparentním ú?tu ?íslo
+                22200011</h2>
+
+            <p>Majitel Transparentního ú?tu: <strong>Ing. Jan Fischer CSc</strong></p>
+
+            <p>Celkový z?statek na b?žném ú?tu: <strong>368,608.93
+                CZK</strong></p>
+
+            <p>Celkový z?statek na termínovaných vkladech: <strong>0.00
+                CZK</strong></p>
+            <table>
+                <thead>
+                <tr>
+                    <th>Datum<br/>?as</th>
+                    <th>Poznámky<br/>název ú?tu</th>
+                    <th>Datum odepsání<br/>valuta<br/>typ</th>
+                    <th>Variabilní symbol<br/>konstantní symbol<br/>specifický symbol</th>
+                    <th><br/>?ástka<br/></th>
+                    <th>Poplatek<br/>sm?na<br/>zpráva</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>16.11.2012<br/>11:59<br/></td>
+                    <td class="whitelc">tisk plak&#225;t&#367;
+                        <br/></td>
+                    <td class="whitel">16.11.2012<br/>16.11.2012<br/>
+                        P&#345;evod
+                    </td>
+                    <td class="whitel">2012026 <br/>
+                        <br/>
+                    </td>
+                    <td class="whtransaction">-144,000.00<br/></td>
+                    <td class="whtransaction"><br/><br/></td>
+                </tr>
+                <tr>
+                    <td>16.11.2012<br/>11:58<br/></td>
+                    <td class="whitelc">pron&#225;jem 10.11.2012
+                        <br/></td>
+                    <td class="whitel">16.11.2012<br/>16.11.2012<br/>
+                        P&#345;evod
+                    </td>
+                    <td class="whitel">2012001 <br/>
+                        <br/>
+                    </td>
+                    <td class="whtransaction">-30,000.00<br/></td>
+                    <td class="whtransaction"><br/><br/></td>
+                </tr>
+                <tr>
+                    <td>16.11.2012<br/>10:59<br/></td>
+                    <td class="whitelc">Dekuji, nechci! :-(*)
+                        <br/>Pelka, Robert, JUDr
+                    </td>
+                    <td class="whitel">16.11.2012<br/>16.11.2012<br/>
+                        P&#345;evod
+                    </td>
+                    <td class="whitel"><br/>
+                        558 <br/>
+                    </td>
+                    <td class="whitep">0.01<br/></td>
+                    <td class="whtransaction"><br/><br/></td>
+                </tr>
+                <tr>
+                    <td>16.11.2012<br/>09:09<br/></td>
+                    <td class="whitelc">F&#211;RUM O V&#352;ECH TELEFONECH - WWW.TELEFORUM.CZ
+                        <br/>JIND&#344;ICH KUBA
+                    </td>
+                    <td class="whitel">16.11.2012<br/>16.11.2012<br/>
+                        P&#345;evod
+                    </td>
+                    <td class="whitel"><br/>
+                        <br/>
+                    </td>
+                    <td class="whitep">0.01<br/></td>
+                    <td class="whtransaction"><br/><br/></td>
+                </tr>
+                <tr>
+                    <td>16.11.2012<br/>03:48<br/></td>
+                    <td class="whitelc">STOVKOMAT.CZ - V&#352;E ZA 150K&#268;
+                        <br/>Moravec Vojt&#283;ch
+                    </td>
+                    <td class="whitel">16.11.2012<br/>16.11.2012<br/>
+                        P&#345;evod
+                    </td>
+                    <td class="whitel"><br/>
+                        <br/>
+                    </td>
+                    <td class="whitep">1.00<br/></td>
+                    <td class="whtransaction"><br/><br/></td>
+                </tr>
+                <tr>
+                    <td>15.11.2012<br/>10:39<br/></td>
+                    <td class="whitelc">korektura
+                        <br/></td>
+                    <td class="whitel">15.11.2012<br/>15.11.2012<br/>
+                        P&#345;evod
+                    </td>
+                    <td class="whitel">2012022 <br/>
+                        <br/>
+                    </td>
+                    <td class="whtransaction">-336.00<br/></td>
+                    <td class="whtransaction"><br/><br/></td>
+                </tr>
+                <tr>
+                    <td>15.11.2012<br/>10:37<br/></td>
+                    <td class="whitelc">telefonn&#237; poplatky
+                        <br/></td>
+                    <td class="whitel">15.11.2012<br/>15.11.2012<br/>
+                        P&#345;evod
+                    </td>
+                    <td class="whitel">2012019 <br/>
+                        <br/>
+                    </td>
+                    <td class="whtransaction">-1,119.00<br/></td>
+                    <td class="whtransaction"><br/><br/></td>
+                </tr>
+                <tr>
+                    <td>15.11.2012<br/>10:35<br/></td>
+                    <td class="whitelc">3 kytice (z&#225;loha)
+                        <br/></td>
+                    <td class="whitel">15.11.2012<br/>15.11.2012<br/>
+                        P&#345;evod
+                    </td>
+                    <td class="whitel"><br/>
+                        <br/>
+                    </td>
+                    <td class="whtransaction">-2,800.00<br/></td>
+                    <td class="whtransaction"><br/><br/></td>
+                </tr>
+                <tr>
+                    <td>15.11.2012<br/>10:22<br/></td>
+                    <td class="whitelc">toner do tisk&#225;rny
+                        <br/></td>
+                    <td class="whitel">15.11.2012<br/>15.11.2012<br/>
+                        P&#345;evod
+                    </td>
+                    <td class="whitel">2976736729 <br/>
+                        <br/>
+                    </td>
+                    <td class="whtransaction">-3,542.00<br/></td>
+                    <td class="whtransaction"><br/><br/></td>
+                </tr>
+                <tr>
+                    <td>15.11.2012<br/>08:54<br/></td>
+                    <td class="whitelc">FUCK OFF KOMOU&#352;I, BEZP&#193;TE&#344;N&#205; P&#344;ISLUHOVA&#268;&#205; JAK&#201;HOKOLIV
+                        RE&#381;IMU, OCHOTN&#205;ZAMASKOVAT ZLOD&#282;JNU KV&#366;LI KORYTU
+                        <br/>MARIE PT&#193;&#268;KOV&#193;</td>
+                    <td class="whitel">15.11.2012<br/>15.11.2012<br/>
+                        P&#345;evod
+                    </td>
+                    <td class="whitel"><br/>
+                        <br/>
+                    </td>
+                    <td class="whitep">0.01<br/></td>
+                    <td class="whtransaction"><br/><br/></td>
+                </tr>
+                <tr>
+                    <td>15.11.2012<br/>03:38<br/></td>
+                    <td class="whitelc">Nechci V&#225;s za prezidenta. kn
+                        <br/>NEV&#282;D&#282;LOV&#193; KATE&#344;IN
+                    </td>
+                    <td class="whitel">15.11.2012<br/>15.11.2012<br/>
+                        P&#345;evod
+                    </td>
+                    <td class="whitel"><br/>
+                        <br/>
+                    </td>
+                    <td class="whitep">0.01<br/></td>
+                    <td class="whtransaction"><br/><br/></td>
+                </tr>
+                <tr>
+                    <td>14.11.2012<br/>03:18<br/></td>
+                    <td class="whitelc">nepreji si aby lide jako vy kandidovali na prezidenta
+                        <br/>ING. PAVEL HASTIK
+                    </td>
+                    <td class="whitel">14.11.2012<br/>14.11.2012<br/>
+                        P&#345;evod
+                    </td>
+                    <td class="whitel"><br/>
+                        <br/>
+                    </td>
+                    <td class="whitep">0.01<br/></td>
+                    <td class="whtransaction"><br/><br/></td>
+                </tr>
+                <tr>
+                    <td>13.11.2012<br/>09:31<br/></td>
+                    <td class="whitelc">BEZPATERNI KARIERNI KOMUNISTA, KUPUJE SI POPULARITU A MANIPULUJETE PRUZKUMY Z
+                        PENEZ MAFIANSKYCH SPONZORU!
+                        <br/>JAN VINTR
+                    </td>
+                    <td class="whitel">13.11.2012<br/>13.11.2012<br/>
+                        P&#345;evod
+                    </td>
+                    <td class="whitel"><br/>
+                        <br/>
+                    </td>
+                    <td class="whitep">0.01<br/></td>
+                    <td class="whtransaction"><br/><br/></td>
+                </tr>
+                <tr>
+                    <td>13.11.2012<br/>03:11<br/></td>
+                    <td class="whitelc">Krysa vzkazuje ze budes na obalkachvideokazet a slavnej driv nez se nadejes, ale
+                        musis delat uplne vsechno jinak to zadnej nemec nekoupi.
+                        <br/>Dr&#225;pal Tom&#225;&#353;</td>
+                    <td class="whitel">13.11.2012<br/>13.11.2012<br/>
+                        P&#345;evod
+                    </td>
+                    <td class="whitel"><br/>
+                        <br/>
+                    </td>
+                    <td class="whitep">0.11<br/></td>
+                    <td class="whtransaction"><br/><br/></td>
+                </tr>
+                <tr>
+                    <td>13.11.2012<br/>02:28<br/></td>
+                    <td class="whitelc">Ondrej Kopicka, Opava; Jste schopnyurednik, ale take byvaly clen KSC,podlezavy
+                        clovek, nejste patriot-nejste vhodny kandidat na prez.
+                        <br/>KOPICKA ONDREJ
+                    </td>
+                    <td class="whitel">13.11.2012<br/>13.11.2012<br/>
+                        P&#345;evod
+                    </td>
+                    <td class="whitel"><br/>
+                        <br/>
+                    </td>
+                    <td class="whitep">0.01<br/></td>
+                    <td class="whtransaction"><br/><br/></td>
+                </tr>
+                <tr>
+                    <td>12.11.2012<br/>16:45<br/></td>
+                    <td class="whitelc">po&#353;tovn&#233;
+                        <br/></td>
+                    <td class="whitel">12.11.2012<br/>12.11.2012<br/>
+                        P&#345;evod
+                    </td>
+                    <td class="whitel">2012020 <br/>
+                        <br/>
+                    </td>
+                    <td class="whtransaction">-31,784.00<br/></td>
+                    <td class="whtransaction"><br/><br/></td>
+                </tr>
+                <tr>
+                    <td>12.11.2012<br/>16:43<br/></td>
+                    <td class="whitelc">nat&#225;&#269;en&#237;, st&#345;ih spot&#367;
+                        <br/></td>
+                    <td class="whitel">12.11.2012<br/>12.11.2012<br/>
+                        P&#345;evod
+                    </td>
+                    <td class="whitel">2012021 <br/>
+                        <br/>
+                    </td>
+                    <td class="whtransaction">-17,400.00<br/></td>
+                    <td class="whtransaction"><br/><br/></td>
+                </tr>
+                <tr>
+                    <td>24.10.2012<br>12:37<br></td>
+                    <td class="whitelc">
+                        <br>Jan Fischer 2013
+                    </td>
+                    <td class="whitel">24.10.2012<br>24.10.2012<br>
+                        Převod
+                    </td>
+                    <td class="whitel"><br>
+                        <br>
+                    </td>
+                    <td class="whitep">519,351.00<br></td>
+                    <td class="whtransaction">-5.00<br><br></td>
+                </tr>
+                <tr>
+                    <td>21.10.2012<br>22:50<br></td>
+                    <td class="whitelc">
+                        <br>Jan Fischer 2013
+                    </td>
+                    <td class="whitel">21.10.2012<br>21.10.2012<br>
+                        Převod
+                    </td>
+                    <td class="whitel"><br>
+                        <br>
+                    </td>
+                    <td class="whitep">1,559,200.00<br></td>
+                    <td class="whtransaction">-5.00<br><br></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- // PRAVA CAST konec -->
+
+        <hr class="nod"/>
+
+        <div id="leftmenu">
+            <ul>
+                <li><a href="/firemni-finance/">Firemní finance</a>
+                    <ul>
+                        <li class=""><a href="/firemni-finance/podnikatele-a-male-firmy/">Podnikatelé a malé firmy</a>
+                        </li>
+                        <li class=""><a href="/firemni-finance/firmy/">Firmy</a></li>
+                        <li class=""><a href="/firemni-finance/velke-podniky/">Velké podniky</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
 
 
+    </div>
+    <!-- // TEXT2 konec -->
+
+    <br class="cleaner"/>
+
+    <hr class="nod"/>
+
+    <div id="menu"><h3>???main.navigation???</h3>
+        <ul class="h44">
+            <li class=" first" id="mnu1"><a href="/osobni-finance/" id="mnu1a">Osobní finance</a>
+                <ul class="nod">
+                    <li class=""><a href="/osobni-finance/bezne-ucty/">B?žné ú?ty</a></li>
+                    <li class=""><a href="/osobni-finance/platebni-karty/">Platební karty</a></li>
+                    <li class=""><a href="/osobni-finance/hypoteky/">Hypotéky</a></li>
+                    <li class=""><a href="/osobni-finance/nadstandardni-sluzby/">Nadstandardní služby</a></li>
+                    <li class=""><a href="/osobni-finance/pojisteni/">Pojišt?ní</a></li>
+                    <li class=""><a href="/osobni-finance/uverove-produkty/">Úv?rové produkty</a></li>
+                    <li class=""><a href="/osobni-finance/zhodnocovani-uspor/">Zhodnocování úspor</a></li>
+                    <li class=""><a href="/osobni-finance/rbpenze/">D?chodová reforma</a></li>
+                </ul>
+            </li>
+            <li class="current active" id="mnu2"><a href="/firemni-finance/" id="mnu2a">Firemní finance</a>
+                <ul class="nod">
+                    <li class=""><a href="/firemni-finance/podnikatele-a-male-firmy/">Podnikatelé a malé firmy</a></li>
+                    <li class=""><a href="/firemni-finance/firmy/">Firmy</a></li>
+                    <li class=""><a href="/firemni-finance/velke-podniky/">Velké podniky</a></li>
+                </ul>
+            </li>
+            <li class="" id="mnu3"><a href="/financni-trhy/" id="mnu3a">Finan?ní trhy</a>
+                <ul class="nod">
+                    <li class=""><a href="/financni-trhy/novy-cenik-sazebnik/">Nový ceník/sazebník</a></li>
+                    <li class=""><a href="/financni-trhy/investice/">Investice</a></li>
+                    <li class=""><a href="/financni-trhy/kurzova-rizika/">Kurzová rizika</a></li>
+                    <li class=""><a href="/financni-trhy/urokova-rizika/">Úroková rizika</a></li>
+                    <li class=""><a href="/financni-trhy/strukturovane-produkty/">Strukturované produkty</a></li>
+                    <li class=""><a href="/financni-trhy/portfolio-management/">Portfolio management</a></li>
+                    <li class=""><a href="/financni-trhy/corporate-finance/">Corporate Finance</a></li>
+                    <li class=""><a href="/financni-trhy/privatni-bankovnictvi/">Privátní bankovnictví</a></li>
+                    <li class=""><a href="/financni-trhy/analyzy/">Analýzy</a></li>
+                    <li class=""><a href="/financni-trhy/robot/">RoBoT</a></li>
+                </ul>
+            </li>
+            <li class=" nb" id="mnu4"><a href="/o-bance/" id="mnu4a">Informa?ní servis</a>
+                <ul class="nod">
+                    <li class=""><a href="http://rb.jobs.cz/">Kariéra</a></li>
+                    <li class=""><a href="/o-bance/media/">Média</a></li>
+                    <li class=""><a href="/o-bance/spolecenska-odpovednost/">Spole?enská odpov?dnost</a></li>
+                    <li class=""><a href="/o-bance/transparentni-zakazky/">Transparentní zakázky</a></li>
+                    <li class=""><a href="/o-bance/zpravodaj/">Zpravodaj</a></li>
+                    <li class=""><a href="/o-bance/informacni-a-online-sluzby/">Informa?ní a online služby</a></li>
+                    <li class=""><a href="/o-bance/informacni-povinnost/">Informa?ní povinnost</a></li>
+                    <li class=""><a href="/o-bance/o-bance/">O bance</a></li>
+                    <li class=""><a href="/o-bance/reseni-zivotnich-situaci/">?ešení životních situací</a></li>
+                    <li class=""><a href="/o-bance/urokove-sazby/">Úrokové sazby</a></li>
+                    <li class=""><a href="/o-bance/download/">Ke stažení</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
 
 
-
-<div id="header">
-    <h1><a href="/">Raiffeisen Bank<span>&#160;</span></a></h1>
-    <p class="spaceman">
-        <a href="#vstup">[ &#8595; vstup na ú?et &#8595; ]</a>
-        <a href="#menu">[ &#8595; k menu &#8595; ]</a>
-        <a href="#fastnav">[ &#8595; k rychlé navigaci &#8595; ]</a>
-        <a href="#topmenu">[ &#8595; k vedlejší navigaci &#8595; ]</a>
-    </p>
-    <fieldset>
-        <legend>Vyhledávání</legend>
-
-        <form name="search" action="/search_results/" method="get">
-            <!--
-            <p>
-              <a href="/search_advanced/" class="more">rozší?ené vyhledávání</a>
-            </p>
-            -->
-            <label for="search-input">vyhledávání …</label>
-            <input name="query" value="" type="text" id="search-input" />
-            <input name="newpage" type="hidden" value="0"/>
-            <input name="root" type="hidden" value="search_results"/>
-            <input type="submit" id="submit" value="hledat" />
-        </form>
-    </fieldset>
-    <p><a class="spaceman">Infolinka: 800 900 900</a></p>
-</div><!-- Hlavicka konec -->
-
-<hr class="nod" />
-
-<div id="text2"><!-- TEXT2 -->
-
-<!--<p id="breadcrumbs">
-  <a href="/">Úvodní stránka</a><span>Firemní finance</span>
-</p>-->
-
-<hr class="nod" />
-
-<div id="login"><h2 id="vstup"><a class="wait" href="/textlogin/">Vstup na ú?et</a></h2><ul><li><a onClick="javascript: _gaq.push(['_trackPageview', 'bankaMEK-vp5']);" href="http://www.rb.cz/attachements/logonBanka/CZ/bankaMEK.html">Mobilní klí?</a></li><li><a onClick="javascript: _gaq.push(['_trackPageview', 'bankaOEK-vp6']);" href="http://www.rb.cz/attachements/logonBanka/CZ/bankaOEK.html">Osobní klí?</a></li><li><a onClick="javascript: _gaq.push(['_trackPageview', 'bankaIEK-vp7']);" href="http://www.rb.cz/attachements/logonBanka/CZ/bankaIEK.html">Internetový klí?</a></li><li class="heslo1"><a onClick="javascript: _gaq.push(['_trackPageview', 'rb-internetbanking-vp8']);" href="https://ibs.rb.cz/IB/ControllerServlet"><big>RB</big> Internetbanking</a></li><li class="heslo"><a onClick="javascript: _gaq.push(['_trackPageview', 'rb-internetbanking-nahled-uctu-vp9']);" href="https://ibs.rb.cz/IB/ControllerServlet?command=channel_getLoginPagePSD">Náhled ú?tu</a></li></ul></div>
-
-<hr class="nod" />
-
-<div id="prava-cast">
-<h1 class="seda"><span>Detail Transparentního ú?tu</span></h1><h2>Pohyby na transparentním ú?tu ?íslo
-    22200011</h2><p>Majitel Transparentního ú?tu: <strong>Ing. Jan Fischer CSc</strong></p><p>Celkový z?statek na b?žném ú?tu: <strong>368,608.93
-    CZK</strong></p><p>Celkový z?statek na termínovaných vkladech: <strong>0.00
-    CZK</strong></p><table><thead><tr><th>Datum<br/>?as</th><th>Poznámky<br/>název ú?tu</th><th>Datum odepsání<br/>valuta<br/>typ</th><th>Variabilní symbol<br/>konstantní symbol<br/>specifický symbol</th><th><br/>?ástka<br/></th><th>Poplatek<br/>sm?na<br/>zpráva</th></tr></thead><tbody><tr><td>16.11.2012<br/>11:59<br/></td><td class="whitelc">tisk plak&#225;t&#367;
-    <br/></td><td class="whitel">16.11.2012<br/>16.11.2012<br/>
-    P&#345;evod</td><td class="whitel">2012026 <br/>
-    <br/>
-</td><td class="whtransaction">-144,000.00<br/></td><td class="whtransaction"><br/><br/></td></tr><tr><td>16.11.2012<br/>11:58<br/></td><td class="whitelc">pron&#225;jem 10.11.2012
-    <br/></td><td class="whitel">16.11.2012<br/>16.11.2012<br/>
-    P&#345;evod</td><td class="whitel">2012001 <br/>
-    <br/>
-</td><td class="whtransaction">-30,000.00<br/></td><td class="whtransaction"><br/><br/></td></tr><tr><td>16.11.2012<br/>10:59<br/></td><td class="whitelc">Dekuji, nechci!  :-(*)
-    <br/>Pelka, Robert, JUDr</td><td class="whitel">16.11.2012<br/>16.11.2012<br/>
-    P&#345;evod</td><td class="whitel"> <br/>
-    558 <br/>
-</td><td class="whitep">0.01<br/></td><td class="whtransaction"><br/><br/></td></tr><tr><td>16.11.2012<br/>09:09<br/></td><td class="whitelc">F&#211;RUM O V&#352;ECH TELEFONECH - WWW.TELEFORUM.CZ
-    <br/>JIND&#344;ICH  KUBA</td><td class="whitel">16.11.2012<br/>16.11.2012<br/>
-    P&#345;evod</td><td class="whitel"> <br/>
-    <br/>
-</td><td class="whitep">0.01<br/></td><td class="whtransaction"><br/><br/></td></tr><tr><td>16.11.2012<br/>03:48<br/></td><td class="whitelc">STOVKOMAT.CZ - V&#352;E ZA 150K&#268;
-    <br/>Moravec Vojt&#283;ch</td><td class="whitel">16.11.2012<br/>16.11.2012<br/>
-    P&#345;evod</td><td class="whitel"> <br/>
-    <br/>
-</td><td class="whitep">1.00<br/></td><td class="whtransaction"><br/><br/></td></tr><tr><td>15.11.2012<br/>10:39<br/></td><td class="whitelc">korektura
-    <br/></td><td class="whitel">15.11.2012<br/>15.11.2012<br/>
-    P&#345;evod</td><td class="whitel">2012022 <br/>
-    <br/>
-</td><td class="whtransaction">-336.00<br/></td><td class="whtransaction"><br/><br/></td></tr><tr><td>15.11.2012<br/>10:37<br/></td><td class="whitelc">telefonn&#237; poplatky
-    <br/></td><td class="whitel">15.11.2012<br/>15.11.2012<br/>
-    P&#345;evod</td><td class="whitel">2012019 <br/>
-    <br/>
-</td><td class="whtransaction">-1,119.00<br/></td><td class="whtransaction"><br/><br/></td></tr><tr><td>15.11.2012<br/>10:35<br/></td><td class="whitelc">3 kytice (z&#225;loha)
-    <br/></td><td class="whitel">15.11.2012<br/>15.11.2012<br/>
-    P&#345;evod</td><td class="whitel"> <br/>
-    <br/>
-</td><td class="whtransaction">-2,800.00<br/></td><td class="whtransaction"><br/><br/></td></tr><tr><td>15.11.2012<br/>10:22<br/></td><td class="whitelc">toner do tisk&#225;rny
-    <br/></td><td class="whitel">15.11.2012<br/>15.11.2012<br/>
-    P&#345;evod</td><td class="whitel">2976736729 <br/>
-    <br/>
-</td><td class="whtransaction">-3,542.00<br/></td><td class="whtransaction"><br/><br/></td></tr><tr><td>15.11.2012<br/>08:54<br/></td><td class="whitelc">FUCK OFF KOMOU&#352;I, BEZP&#193;TE&#344;N&#205; P&#344;ISLUHOVA&#268;&#205; JAK&#201;HOKOLIV RE&#381;IMU, OCHOTN&#205;ZAMASKOVAT ZLOD&#282;JNU KV&#366;LI KORYTU
-    <br/>MARIE  PT&#193;&#268;KOV&#193;</td><td class="whitel">15.11.2012<br/>15.11.2012<br/>
-    P&#345;evod</td><td class="whitel"> <br/>
-    <br/>
-</td><td class="whitep">0.01<br/></td><td class="whtransaction"><br/><br/></td></tr><tr><td>15.11.2012<br/>03:38<br/></td><td class="whitelc">Nechci V&#225;s za prezidenta. kn
-    <br/>NEV&#282;D&#282;LOV&#193; KATE&#344;IN</td><td class="whitel">15.11.2012<br/>15.11.2012<br/>
-    P&#345;evod</td><td class="whitel"> <br/>
-    <br/>
-</td><td class="whitep">0.01<br/></td><td class="whtransaction"><br/><br/></td></tr><tr><td>14.11.2012<br/>03:18<br/></td><td class="whitelc">nepreji si aby lide jako vy kandidovali na prezidenta
-    <br/>ING. PAVEL HASTIK</td><td class="whitel">14.11.2012<br/>14.11.2012<br/>
-    P&#345;evod</td><td class="whitel"> <br/>
-    <br/>
-</td><td class="whitep">0.01<br/></td><td class="whtransaction"><br/><br/></td></tr><tr><td>13.11.2012<br/>09:31<br/></td><td class="whitelc">BEZPATERNI KARIERNI KOMUNISTA, KUPUJE SI POPULARITU A MANIPULUJETE PRUZKUMY Z PENEZ MAFIANSKYCH SPONZORU!
-    <br/>JAN  VINTR</td><td class="whitel">13.11.2012<br/>13.11.2012<br/>
-    P&#345;evod</td><td class="whitel"> <br/>
-    <br/>
-</td><td class="whitep">0.01<br/></td><td class="whtransaction"><br/><br/></td></tr><tr><td>13.11.2012<br/>03:11<br/></td><td class="whitelc">Krysa vzkazuje ze budes na obalkachvideokazet a slavnej driv nez se nadejes, ale musis delat uplne vsechno jinak to zadnej nemec nekoupi.
-    <br/>Dr&#225;pal Tom&#225;&#353;</td><td class="whitel">13.11.2012<br/>13.11.2012<br/>
-    P&#345;evod</td><td class="whitel"> <br/>
-    <br/>
-</td><td class="whitep">0.11<br/></td><td class="whtransaction"><br/><br/></td></tr><tr><td>13.11.2012<br/>02:28<br/></td><td class="whitelc">Ondrej Kopicka, Opava; Jste schopnyurednik, ale take byvaly clen KSC,podlezavy clovek, nejste patriot-nejste vhodny kandidat na prez.
-    <br/>KOPICKA ONDREJ</td><td class="whitel">13.11.2012<br/>13.11.2012<br/>
-    P&#345;evod</td><td class="whitel"> <br/>
-    <br/>
-</td><td class="whitep">0.01<br/></td><td class="whtransaction"><br/><br/></td></tr><tr><td>12.11.2012<br/>16:45<br/></td><td class="whitelc">po&#353;tovn&#233;
-    <br/></td><td class="whitel">12.11.2012<br/>12.11.2012<br/>
-    P&#345;evod</td><td class="whitel">2012020 <br/>
-    <br/>
-</td><td class="whtransaction">-31,784.00<br/></td><td class="whtransaction"><br/><br/></td></tr><tr><td>12.11.2012<br/>16:43<br/></td><td class="whitelc">nat&#225;&#269;en&#237;, st&#345;ih spot&#367;
-    <br/></td><td class="whitel">12.11.2012<br/>12.11.2012<br/>
-    P&#345;evod</td><td class="whitel">2012021 <br/>
-    <br/>
-</td><td class="whtransaction">-17,400.00<br/></td><td class="whtransaction"><br/><br/></td></tr>
-<tr><td>24.10.2012<br>12:37<br></td><td class="whitelc">
-    <br>Jan Fischer 2013</td><td class="whitel">24.10.2012<br>24.10.2012<br>
-    Převod</td><td class="whitel"> <br>
-    <br>
-</td><td class="whitep">519,351.00<br></td><td class="whtransaction">-5.00<br><br></td></tr>
-<tr><td>21.10.2012<br>22:50<br></td><td class="whitelc">
-    <br>Jan Fischer 2013</td><td class="whitel">21.10.2012<br>21.10.2012<br>
-    Převod</td><td class="whitel"> <br>
-    <br>
-</td><td class="whitep">1,559,200.00<br></td><td class="whtransaction">-5.00<br><br></td></tr>
-</tbody></table>
-</div><!-- // PRAVA CAST konec -->
-
-<hr class="nod" />
-
-<div id="leftmenu"><ul><li><a href="/firemni-finance/">Firemní finance</a><ul><li class=""><a href="/firemni-finance/podnikatele-a-male-firmy/">Podnikatelé a malé firmy</a></li><li class=""><a href="/firemni-finance/firmy/">Firmy</a></li><li class=""><a href="/firemni-finance/velke-podniky/">Velké podniky</a></li></ul></li></ul></div>
+    <hr class="nod"/>
 
 
-</div><!-- // TEXT2 konec -->
-
-<br class="cleaner" />
-
-<hr class="nod" />
-
-<div id="menu"><h3>???main.navigation???</h3><ul class="h44"><li class=" first" id="mnu1"><a href="/osobni-finance/" id="mnu1a">Osobní finance</a><ul class="nod"><li class=""><a href="/osobni-finance/bezne-ucty/">B?žné ú?ty</a></li><li class=""><a href="/osobni-finance/platebni-karty/">Platební karty</a></li><li class=""><a href="/osobni-finance/hypoteky/">Hypotéky</a></li><li class=""><a href="/osobni-finance/nadstandardni-sluzby/">Nadstandardní služby</a></li><li class=""><a href="/osobni-finance/pojisteni/">Pojišt?ní</a></li><li class=""><a href="/osobni-finance/uverove-produkty/">Úv?rové produkty</a></li><li class=""><a href="/osobni-finance/zhodnocovani-uspor/">Zhodnocování úspor</a></li><li class=""><a href="/osobni-finance/rbpenze/">D?chodová reforma</a></li></ul></li><li class="current active" id="mnu2"><a href="/firemni-finance/" id="mnu2a">Firemní finance</a><ul class="nod"><li class=""><a href="/firemni-finance/podnikatele-a-male-firmy/">Podnikatelé a malé firmy</a></li><li class=""><a href="/firemni-finance/firmy/">Firmy</a></li><li class=""><a href="/firemni-finance/velke-podniky/">Velké podniky</a></li></ul></li><li class="" id="mnu3"><a href="/financni-trhy/" id="mnu3a">Finan?ní trhy</a><ul class="nod"><li class=""><a href="/financni-trhy/novy-cenik-sazebnik/">Nový ceník/sazebník</a></li><li class=""><a href="/financni-trhy/investice/">Investice</a></li><li class=""><a href="/financni-trhy/kurzova-rizika/">Kurzová rizika</a></li><li class=""><a href="/financni-trhy/urokova-rizika/">Úroková rizika</a></li><li class=""><a href="/financni-trhy/strukturovane-produkty/">Strukturované produkty</a></li><li class=""><a href="/financni-trhy/portfolio-management/">Portfolio management</a></li><li class=""><a href="/financni-trhy/corporate-finance/">Corporate Finance</a></li><li class=""><a href="/financni-trhy/privatni-bankovnictvi/">Privátní bankovnictví</a></li><li class=""><a href="/financni-trhy/analyzy/">Analýzy</a></li><li class=""><a href="/financni-trhy/robot/">RoBoT</a></li></ul></li><li class=" nb" id="mnu4"><a href="/o-bance/" id="mnu4a">Informa?ní servis</a><ul class="nod"><li class=""><a href="http://rb.jobs.cz/">Kariéra</a></li><li class=""><a href="/o-bance/media/">Média</a></li><li class=""><a href="/o-bance/spolecenska-odpovednost/">Spole?enská odpov?dnost</a></li><li class=""><a href="/o-bance/transparentni-zakazky/">Transparentní zakázky</a></li><li class=""><a href="/o-bance/zpravodaj/">Zpravodaj</a></li><li class=""><a href="/o-bance/informacni-a-online-sluzby/">Informa?ní a online služby</a></li><li class=""><a href="/o-bance/informacni-povinnost/">Informa?ní povinnost</a></li><li class=""><a href="/o-bance/o-bance/">O bance</a></li><li class=""><a href="/o-bance/reseni-zivotnich-situaci/">?ešení životních situací</a></li><li class=""><a href="/o-bance/urokove-sazby/">Úrokové sazby</a></li><li class=""><a href="/o-bance/download/">Ke stažení</a></li></ul></li></ul></div>
-
-
-<hr class="nod" />
-
-
-
-<h3 class="nod">Vedlejší navigace</h3>
-<ul id="topmenu">
-    <li><a href="https://ibs.rb.cz/sign/_mcoespacc?..OASLogon%2ELanguage=CZ">MC@Sign</a></li>
-    <li><a href="/o-bance/media/">Média</a></li>
-    <li><a href="/o-bance/o-bance/kontakty/">Kontakty</a></li>
-    <li><a href="http://rb.jobs.cz">Kariéra</a></li>
-    <li><a href="/mapawebu/">Mapa webu</a></li>
-    <li class="en"><a href="http://www.rb.cz/en/">e<span>&#160;</span></a></li>
-    <li class="linkedin-ico-li"><a title="LinkedIn - Raiffeisenbank" target="_blank" href="http://www.linkedin.com/groups?mostPopular=&amp;gid=3326157">l<span>&#160;</span></a></li>
-    <li class="twitter-ico-li"><a title="Twitter - Raiffeisenbank" target="_blank" href="http://twitter.com/RaiffeisenCZ">t<span>&#160;</span></a></li>
-    <li class="facebook-ico-li"><a title="Facebook - Raiffeisenbank" target="_blank" href="http://www.facebook.com/RaiffeisenbankCZ">t<span>&#160;</span></a></li>
-</ul>
-
-
-
-
-
-
-
-<div id="footer">
-    <p id="copy">&#169; 2008-2012 <a href="/">Raiffeisenbank</a><br /><a href="http://www.rbinternational.com" onClick="_gaq.push(['_trackEvent', 'exit-points', 'click-external', 'rbinternational.com', 5]);">Raiffeisen Bank International</a><br />&#160;<br /></p>
-
-    <ul>
-        <li><a href="/mapawebu/">Mapa webu</a>&#160;|&#160;</li>
-        <li><a href="/attachements/pdf/obecne-dokumenty/vseobecne-obchodni-podminky.pdf" target="_blank" onClick="_gaq.push(['_trackPageview', '/attachements/pdf/obecne-dokumenty/vseobecne-obchodni-podminky.pdf']);">Všeobecné obchodní podmínky</a>&#160;|&#160;</li>
-        <li><a href="/attachements/pdf/obecne-dokumenty/ochrana-osobnich-dat/ochranaou.pdf" target="_blank" onClick="_gaq.push(['_trackPageview', '/attachements/pdf/obecne-dokumenty/ochrana-osobnich-dat/ochranaou.pdf']);">Prohlášení o ochran? osobních dat</a></li>
+    <h3 class="nod">Vedlejší navigace</h3>
+    <ul id="topmenu">
+        <li><a href="https://ibs.rb.cz/sign/_mcoespacc?..OASLogon%2ELanguage=CZ">MC@Sign</a></li>
+        <li><a href="/o-bance/media/">Média</a></li>
+        <li><a href="/o-bance/o-bance/kontakty/">Kontakty</a></li>
+        <li><a href="http://rb.jobs.cz">Kariéra</a></li>
+        <li><a href="/mapawebu/">Mapa webu</a></li>
+        <li class="en"><a href="http://www.rb.cz/en/">e<span>&#160;</span></a></li>
+        <li class="linkedin-ico-li"><a title="LinkedIn - Raiffeisenbank" target="_blank"
+                                       href="http://www.linkedin.com/groups?mostPopular=&amp;gid=3326157">l<span>&#160;</span></a>
+        </li>
+        <li class="twitter-ico-li"><a title="Twitter - Raiffeisenbank" target="_blank"
+                                      href="http://twitter.com/RaiffeisenCZ">t<span>&#160;</span></a></li>
+        <li class="facebook-ico-li"><a title="Facebook - Raiffeisenbank" target="_blank"
+                                       href="http://www.facebook.com/RaiffeisenbankCZ">t<span>&#160;</span></a></li>
     </ul>
 
-    <ul class="reklamace">
-        <li class="transparentni-zakazky"><a href="/o-bance/transparentni-zakazky/">Transparentní ve?ejné zakázky</a></li>
-        <!--li><a href="/o-bance/kontakty/">Kontakt</a>&#160;|&#160;</li-->
-        <!--li><a href="https://ibs.rb.cz/sign/_mcoespacc?..OASLogon%2ELanguage=CZ">MC@Sign</a>&#160;|&#160;</li-->
-        <!--li><a href="/mapawebu/">Mapa webu</a></li-->
-        <li><a title="LinkedIn - Raiffeisenbank" target="_blank" class="linkedin-ico-a" href="http://www.linkedin.com/groups?mostPopular=&amp;gid=3326157" onClick="_gaq.push(['_trackEvent', 'exit-points', 'click-external', 'linkedin.com', 2]);">LinkedIn</a></li>
-        <li>&#160;|&#160;</li>
-        <li><a title="Twitter - Raiffeisenbank" target="_blank" class="twitter-ico-a" href="http://twitter.com/RaiffeisenCZ" onClick="_gaq.push(['_trackEvent', 'exit-points', 'click-external', 'twitter.com', 1]);">Twitter</a></li>
-        <li>&#160;|&#160;</li>
-        <li><a title="Facebook - Raiffeisenbank" target="_blank" class="facebook-ico-a" href="http://www.facebook.com/RaiffeisenbankCZ" onClick="_gaq.push(['_trackEvent', 'exit-points', 'click-external', 'facebook.com', 1]);">Facebook</a></li>
-    </ul>
+
+    <div id="footer">
+        <p id="copy">&#169; 2008-2012 <a href="/">Raiffeisenbank</a><br/><a href="http://www.rbinternational.com"
+                                                                            onClick="_gaq.push(['_trackEvent', 'exit-points', 'click-external', 'rbinternational.com', 5]);">Raiffeisen
+            Bank International</a><br/>&#160;<br/></p>
+
+        <ul>
+            <li><a href="/mapawebu/">Mapa webu</a>&#160;|&#160;</li>
+            <li><a href="/attachements/pdf/obecne-dokumenty/vseobecne-obchodni-podminky.pdf" target="_blank"
+                   onClick="_gaq.push(['_trackPageview', '/attachements/pdf/obecne-dokumenty/vseobecne-obchodni-podminky.pdf']);">Všeobecné
+                obchodní podmínky</a>&#160;|&#160;</li>
+            <li><a href="/attachements/pdf/obecne-dokumenty/ochrana-osobnich-dat/ochranaou.pdf" target="_blank"
+                   onClick="_gaq.push(['_trackPageview', '/attachements/pdf/obecne-dokumenty/ochrana-osobnich-dat/ochranaou.pdf']);">Prohlášení
+                o ochran? osobních dat</a></li>
+        </ul>
+
+        <ul class="reklamace">
+            <li class="transparentni-zakazky"><a href="/o-bance/transparentni-zakazky/">Transparentní ve?ejné
+                zakázky</a></li>
+            <!--li><a href="/o-bance/kontakty/">Kontakt</a>&#160;|&#160;</li-->
+            <!--li><a href="https://ibs.rb.cz/sign/_mcoespacc?..OASLogon%2ELanguage=CZ">MC@Sign</a>&#160;|&#160;</li-->
+            <!--li><a href="/mapawebu/">Mapa webu</a></li-->
+            <li><a title="LinkedIn - Raiffeisenbank" target="_blank" class="linkedin-ico-a"
+                   href="http://www.linkedin.com/groups?mostPopular=&amp;gid=3326157"
+                   onClick="_gaq.push(['_trackEvent', 'exit-points', 'click-external', 'linkedin.com', 2]);">LinkedIn</a>
+            </li>
+            <li>&#160;|&#160;</li>
+            <li><a title="Twitter - Raiffeisenbank" target="_blank" class="twitter-ico-a"
+                   href="http://twitter.com/RaiffeisenCZ"
+                   onClick="_gaq.push(['_trackEvent', 'exit-points', 'click-external', 'twitter.com', 1]);">Twitter</a>
+            </li>
+            <li>&#160;|&#160;</li>
+            <li><a title="Facebook - Raiffeisenbank" target="_blank" class="facebook-ico-a"
+                   href="http://www.facebook.com/RaiffeisenbankCZ"
+                   onClick="_gaq.push(['_trackEvent', 'exit-points', 'click-external', 'facebook.com', 1]);">Facebook</a>
+            </li>
+        </ul>
+    </div>
+
 </div>
-
-</div><!-- Konec page -->
+<!-- Konec page -->
 
 <div id="popupbg">
 
-</div><div id="popup"><div class="content text"><a href="" class="close">Close<span> </span></a><div class="container kontakt-form"/><div class="clr"><span> </span></div></div></div>
+</div>
+<div id="popup">
+    <div class="content text"><a href="" class="close">Close<span> </span></a>
+
+        <div class="container kontakt-form"/>
+        <div class="clr"><span> </span></div>
+    </div>
+</div>
 </body>
 </html>

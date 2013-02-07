@@ -36,6 +36,7 @@ grails.project.dependency.resolution = {
 
         // runtime 'mysql:mysql-connector-java:5.1.20'
         compile 'org.jsoup:jsoup:1.6.3'
+        compile 'org.apache.httpcomponents:httpclient:4.2.1'
 
     }
 

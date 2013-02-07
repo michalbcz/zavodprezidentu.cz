@@ -3,13 +3,20 @@ package cz.zavodprezidentu.scraper.account.scrappers
 import cz.zavodprezidentu.domain.Account
 import cz.zavodprezidentu.domain.TransactionItem
 import cz.zavodprezidentu.scraper.account.AccountInfoScraper
+import cz.zavodprezidentu.utils.Consts
+import org.apache.http.HttpHost
+import org.apache.http.client.methods.HttpGet
+import org.apache.http.impl.client.DefaultHttpClient
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
+import org.springframework.http.HttpMethod
+import org.springframework.http.client.ClientHttpRequest
 
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.text.NumberFormat
+import java.text.SimpleDateFormat
 
 /**
  */
@@ -38,7 +45,19 @@ class RaiffeisenAccountInfoScrapper implements AccountInfoScraper {
                 "I don't know which to choose. Please fill only one.")
 
         if (url) {
-           document = Jsoup.connect(url.toString()).get()
+
+            /* Server is sensitive on http's header Accept-Language settings -
+               without this header set server defaults to english jvm locale and outputted html
+               has strange formatting of dates.
+
+               Our parsing (scraping) code expects html as it looks like when opened in browser
+               (as browser sends http's Accept-Language header properly) */
+            def client = new DefaultHttpClient()
+            def getMethod = new HttpGet(url)
+            getMethod.addHeader("Accept-Language", "en")
+            def contentStream = client.execute(getMethod).getEntity().getContent()
+
+            document = Jsoup.parse(contentStream, "UTF-8", "http://www.rb.cz")
         } else if (html) {
            document = Jsoup.parse(html)
         } else {
@@ -71,33 +90,39 @@ class RaiffeisenAccountInfoScrapper implements AccountInfoScraper {
     }
 
     /**
+     *
+     * Html snippet of row looks like this:<br/><br/>
+
      * <code>
-     *     <tr>
-            <td>2012-10-21 22:50:16.0<br />2012-10-21 22:50:16.0<br /></td>
-            <td class="whitelc"> <br />Jan Fischer 2013</td>
-            <td class="whitel">2012-10-21 22:50:16.0<br />2012-10-21 22:50:16.0<br /> Převod</td>
-            <td class="whitel"> <br /> <br /> </td>
-            <td class="whitep">1559200.00<br /></td>
-            <td class="whtransaction">-5.00<br /><br /></td>
-     </tr>
+     *   &lt;tr&gt;<br/>            &lt;td&gt;2012-10-21 22:50:16.0&lt;br /&gt;2012-10-21 22:50:16.0&lt;br /&gt;&lt;/td&gt;<br/>            &lt;td class=&quot;whitelc&quot;&gt; &lt;br /&gt;Jan Fischer 2013&lt;/td&gt;<br/>            &lt;td class=&quot;whitel&quot;&gt;2012-10-21 22:50:16.0&lt;br /&gt;2012-10-21 22:50:16.0&lt;br /&gt; P&#x0159;evod&lt;/td&gt;<br/>            &lt;td class=&quot;whitel&quot;&gt; &lt;br /&gt; &lt;br /&gt; &lt;/td&gt;<br/>            &lt;td class=&quot;whitep&quot;&gt;1559200.00&lt;br /&gt;&lt;/td&gt;<br/>            &lt;td class=&quot;whtransaction&quot;&gt;-5.00&lt;br /&gt;&lt;br /&gt;&lt;/td&gt;<br/>         &lt;/tr&gt;
      * </code>
+     * <br/>
+     *
+     * <b>Note:</b> When there is no "Accept-Language: cs" header in http request dates are formatted
+     * like in snippet above (ie. in american date format)
+     *
      * @param e
      * @return
      */
     def TransactionItem parseRow(Element e) {
         TransactionItem item = new TransactionItem(amount: 0)
 
+        def columns = e.select("td")
+
         try {
-            def amountElement = e.select("td")[4]
+            def amountElement = columns[4]
             def amountText = amountElement.text()
 
             if (amountText) {
-               item.amount = new BigDecimal(amountFormat.parse(amountText))
+               item.amount = new BigDecimal(getAmountFormat().parse(amountText))
             }
         }
         catch (NumberFormatException nfe) {
             item.amount = 0
         }
+
+        item.description = columns[1].text()
+        item.date = new SimpleDateFormat("dd.MM.yyyy hh:mm", Consts.CZECH).parse(columns[0].text())
 
         return item
     }
