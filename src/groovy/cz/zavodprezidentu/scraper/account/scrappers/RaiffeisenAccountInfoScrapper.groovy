@@ -4,11 +4,13 @@ import cz.zavodprezidentu.domain.Account
 import cz.zavodprezidentu.domain.TransactionItem
 import cz.zavodprezidentu.scraper.account.AccountInfoScraper
 import cz.zavodprezidentu.utils.Consts
+import org.apache.commons.logging.LogFactory
 import org.apache.http.client.methods.HttpGet
 import org.apache.http.impl.client.DefaultHttpClient
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
+import org.springframework.util.Assert
 
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
@@ -18,6 +20,8 @@ import java.text.SimpleDateFormat
 /**
  */
 class RaiffeisenAccountInfoScrapper implements AccountInfoScraper {
+
+    private static final log = LogFactory.getLog(RaiffeisenAccountInfoScrapper.class)
 
     private static final String BANK_NAME = "Raiffeisen Bank"
     private static final String BANK_CODE = "5550"
@@ -39,7 +43,7 @@ class RaiffeisenAccountInfoScrapper implements AccountInfoScraper {
 
         if (url && html) throw new RuntimeException(
                 "You defined both url (${url}) and html as source for scrapper." +
-                "I don't know which to choose. Please fill only one.")
+                        "I don't know which to choose. Please fill only one.")
 
         if (url) {
 
@@ -56,7 +60,7 @@ class RaiffeisenAccountInfoScrapper implements AccountInfoScraper {
 
             document = Jsoup.parse(contentStream, "UTF-8", "http://www.rb.cz")
         } else if (html) {
-           document = Jsoup.parse(html)
+            document = Jsoup.parse(html)
         } else {
             throw new RuntimeException("No source of html to be scraped.")
         }
@@ -106,16 +110,17 @@ class RaiffeisenAccountInfoScrapper implements AccountInfoScraper {
 
         def columns = e.select("td")
 
-        try {
-            def amountElement = columns[4]
-            def amountText = amountElement.text()
+        def amountElement = columns[4]
+        def amountText = amountElement.text()
 
-            if (amountText) {
-               item.amount = new BigDecimal(getAmountFormat().parse(amountText))
-            }
+        assert amountText != 0, "HTML element which should contain amount should not be empty."
+
+        try {
+            item.amount = new BigDecimal(getAmountFormat().parse(amountText))
         }
         catch (NumberFormatException nfe) {
-            item.amount = 0
+            log.error("Cannot parse amount from text ${amountText}", nfe)
+            throw new RuntimeException("Cannot parse amount from text ${amountText}", nfe)
         }
 
         item.description = columns[1].text()
@@ -133,4 +138,5 @@ class RaiffeisenAccountInfoScrapper implements AccountInfoScraper {
 
         return amountFormat
     }
+
 }
