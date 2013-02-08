@@ -2,8 +2,6 @@ package cz.zavodprezidentu.scraper.account.scrappers
 
 import cz.zavodprezidentu.domain.TransactionItem
 import cz.zavodprezidentu.utils.Consts
-import org.jsoup.Jsoup
-import org.jsoup.nodes.Document
 import org.junit.Test
 
 import java.text.SimpleDateFormat
@@ -27,17 +25,17 @@ class RaiffeisenAccountInfoScraperOfflineTest extends AbstractRaiffeisenAccountI
     }
 
     @Test void "incoming transactions count"() {
-        assertEquals(11, scraper.getAccount().incomingTransactions)
+        assertEquals(11, scraper.getAccount().countOfIncomingTransactions)
     }
 
     @Test void "transaction item description"() {
-        def transactionItems = scraper.getAccount().items
+        def transactionItems = scraper.getAccount().transactionItems
         def expectedTransactionItems = transactionItems.grep { TransactionItem item -> item.description.contains("tisk plakátů") }
         assertTrue(expectedTransactionItems.size() == 1)
     }
 
     @Test void "transaction item date"() {
-        def transactionItems = scraper.getAccount().items
+        def transactionItems = scraper.getAccount().transactionItems
         def filterClosure = { TransactionItem item -> item.description.contains("tisk plakátů") }
         def expectedTransactionItem = (transactionItems.grep(filterClosure) as List)[0]
         def expectedDateTime = new SimpleDateFormat("dd.MM.yyyy hh:mm", Consts.CZECH).parse("16.11.2012 11:59")

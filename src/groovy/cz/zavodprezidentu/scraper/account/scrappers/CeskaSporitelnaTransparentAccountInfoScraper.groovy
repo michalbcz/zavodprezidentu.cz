@@ -32,7 +32,7 @@ class CeskaSporitelnaTransparentAccountInfoScraper implements AccountInfoScraper
         def accountBalanceText = document.select(".document-content strong:containsOwn(CZK)").text()
         account.balance = parseAmount(accountBalanceText)
         account.number = (document.select("div.title").html() =~ /(\d+\/\d+)/)[0][0]
-        account.items = []
+        account.transactionItems = []
         account.totalSpend = 0
         account.totalIncome = 0
 
@@ -40,16 +40,16 @@ class CeskaSporitelnaTransparentAccountInfoScraper implements AccountInfoScraper
 
         transactionItems.each { transactionItem ->
             transactionItem.account = account
-            account.items << transactionItem
+            account.transactionItems << transactionItem
             if (transactionItem.amount > 0) {
                 account.totalIncome += transactionItem.amount
-                account.incomingTransactions += 1
+                account.countOfIncomingTransactions += 1
             } else {
                 account.totalSpend += transactionItem.amount
             }
         }
 
-        log.debug "Scraped ${account.items.size()} items."
+        log.debug "Scraped ${account.transactionItems.size()} items."
         return account
 
     }

@@ -6,10 +6,10 @@ class Account {
     BigDecimal balance = 0;
     BigDecimal totalIncome = 0;
     BigDecimal totalSpend = 0;
-    Integer incomingTransactions = 0;
+    Integer countOfIncomingTransactions = 0;
 
-    static belongsTo = [candidate:Candidate]
-    static hasMany = [items:TransactionItem]
+    static belongsTo = [candidate : Candidate]
+    static hasMany = [transactionItems : TransactionItem]
 
     static constraints = {
         bank(nullable: true)
@@ -17,7 +17,7 @@ class Account {
         balance()
         totalIncome()
         totalSpend()
-        incomingTransactions()
+        countOfIncomingTransactions()
     }
 
 }

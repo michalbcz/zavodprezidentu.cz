@@ -1,21 +1,10 @@
 package cz.zavodprezidentu.scraper.account.scrappers
 
-import cz.zavodprezidentu.domain.Account
 import cz.zavodprezidentu.domain.TransactionItem
 import cz.zavodprezidentu.utils.Consts
-import grails.test.mixin.Mock
-import grails.test.mixin.TestFor
 import org.apache.commons.lang.time.DateUtils
 import org.hamcrest.CoreMatchers
-import org.jsoup.Jsoup
-import org.jsoup.nodes.Document
-import org.jsoup.nodes.Element
-import org.junit.BeforeClass
 import org.junit.Test
-
-import java.text.SimpleDateFormat
-
-import static grails.test.MockUtils.mockDomain
 
 import static org.junit.Assert.assertEquals
 import static org.junit.Assert.assertThat
@@ -41,7 +30,7 @@ class RaiffeisenAccountInfoScraperOnlineTest extends AbstractRaiffeisenAccountIn
     @Test void "test parsing of transaction item description"() {
 
         def account = scraper.getAccount()
-        def poplatkyVodafone = account.items.grep { TransactionItem item ->
+        def poplatkyVodafone = account.transactionItems.grep { TransactionItem item ->
             item.description.equals(TRANSACTION_ITEM_FOR_TELEFONNI_POPLATKY_VODAFONE_DESCRIPTION)
         }
 
@@ -56,7 +45,7 @@ class RaiffeisenAccountInfoScraperOnlineTest extends AbstractRaiffeisenAccountIn
 
         def account = scraper.getAccount()
 
-        def poplatkyVodafone = account.items.grep { TransactionItem item ->
+        def poplatkyVodafone = account.transactionItems.grep { TransactionItem item ->
             item.description.equals(TRANSACTION_ITEM_FOR_TELEFONNI_POPLATKY_VODAFONE_DESCRIPTION)
         }
 
@@ -76,7 +65,7 @@ class RaiffeisenAccountInfoScraperOnlineTest extends AbstractRaiffeisenAccountIn
 
         def account = scraper.getAccount()
 
-        def poplatkyVodafone = account.items.grep { TransactionItem item ->
+        def poplatkyVodafone = account.transactionItems.grep { TransactionItem item ->
             item.description.equals(TRANSACTION_ITEM_FOR_TELEFONNI_POPLATKY_VODAFONE_DESCRIPTION)
         }
 
