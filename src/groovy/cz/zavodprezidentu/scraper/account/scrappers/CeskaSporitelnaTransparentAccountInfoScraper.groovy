@@ -3,6 +3,7 @@ package cz.zavodprezidentu.scraper.account.scrappers
 import cz.zavodprezidentu.domain.Account
 import cz.zavodprezidentu.domain.TransactionItem
 import cz.zavodprezidentu.scraper.account.AccountInfoScraper
+import org.apache.commons.lang.StringUtils
 import org.apache.commons.logging.LogFactory
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
@@ -15,8 +16,8 @@ class CeskaSporitelnaTransparentAccountInfoScraper implements AccountInfoScraper
 
     private static final log = LogFactory.getLog(this)
 
-    def private String url
-
+    def String url
+    def String htmlAsString
 
     /**
      *
@@ -26,7 +27,17 @@ class CeskaSporitelnaTransparentAccountInfoScraper implements AccountInfoScraper
 
     @Override
     Account getAccount() {
-        Document document = Jsoup.connect(url).get()
+
+        Document document = null
+        if (url != null) {
+            document = Jsoup.connect(url).get()
+        } else if (htmlAsString != null) {
+            document = Jsoup.parse(htmlAsString)
+        } else {
+            throw new RuntimeException(
+                    "Either url or htmlAsString have to be set otherwise scraper " +
+                    "doesn't know from what source should be scraping.")
+        }
         def Account account = new Account()
 
         def accountBalanceText = document.select(".document-content strong:containsOwn(CZK)").text()
@@ -56,19 +67,17 @@ class CeskaSporitelnaTransparentAccountInfoScraper implements AccountInfoScraper
 
     private List<TransactionItem> crawlAndParsePagesStartingAt(String pageUrl) {
 
-        log.debug("Parsing page at url : $pageUrl")
-
+        log.info("Parsing page at url : $pageUrl")
         Document document = Jsoup.connect(pageUrl).get()
-
 
         def rows = document.select("table.redheading tr")
         //skip header
         rows.remove(0)
-        def transactionItems = rows.collect { row ->
-            parseRow(row)
-        }
+        def transactionItems =
+                rows.grep { row -> StringUtils.isNotBlank(row.select("td")[0].html().replace("&nbsp;", "").trim()) }
+                    .collect { row ->  parseRow(row) }
 
-        log.debug(
+        log.info(
                 "Parsing page at url : ${pageUrl} DONE! " +
                 "Number of scraped transaction items: ${transactionItems.size()}")
 
@@ -94,7 +103,8 @@ class CeskaSporitelnaTransparentAccountInfoScraper implements AccountInfoScraper
     @SuppressWarnings("GrMethodMayBeStatic")
     private Number parseAmount(String amountAsText) {
 
-        def amountAsTextNormalized = amountAsText - "CZK" // remove currency
+        def amountTextWithoutWhitespaces = amountAsText.replace(" ", "").replace("&nbsp;", "").trim()
+        def amountAsTextNormalized = amountTextWithoutWhitespaces - "CZK" // remove currency
         amountAsTextNormalized = amountAsTextNormalized.replaceAll(/\./, "") // normalize to czech format of number
 
         def formatter = NumberFormat.getInstance(new Locale("cs"))
@@ -105,12 +115,24 @@ class CeskaSporitelnaTransparentAccountInfoScraper implements AccountInfoScraper
 
     def TransactionItem parseRow(Element row) {
         TransactionItem item = new TransactionItem()
-        String s = row.select("td")[4].html()
+        String amountRawText = row.select("td")[4].html()
         //handle <p> in <td>
-        if (s.contains("<p>")) {
-            s = row.select("td")[4].select("p").html()
+        if (amountRawText.contains("<p>")) {
+            amountRawText = row.select("td")[4].select("p").html()
         }
-        item.amount = parseAmount(s.replace(" ", "").replace("&nbsp;", "").trim())
+
+        try {
+            item.amount = parseAmount(amountRawText)
+        } catch (Exception ex) {
+            def errorText = "Unable to parse amount from text: '${amountRawText}' " +
+                    "extracted from transaction row " +
+                    "represented by this html: '${row.toString()}'" +
+                    "from page ${row.baseUri()}. " +
+                    "Previous sibling has this html: ${row.previousElementSibling().toString()}."
+
+            log.error(errorText, ex)
+            throw new RuntimeException(errorText, ex)
+        }
 
         return item
     }
