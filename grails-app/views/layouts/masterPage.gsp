@@ -133,10 +133,14 @@
             <footer>
                 <p>
                     <span style="text-align:left;float:left">&copy; <a href="http://twitter.com/krtek_cz">@krtek_cz</a> &
-                        <a href="http://twitter.com/michalb_cz">@michalbcz</a> 2012
+                        <a href="http://twitter.com/michalb_cz">@michalbcz</a>
+                        <!-- this year -->
+                        ${new Date().year + 1900 /* never get used to this shitty api :) */}
                     </span>
-                    <span style="text-align:right;float:right">Powered by: <a href="http://grails.org">Grails</a> &
-                        <a href="https://wrapbootstrap.com/theme/perfectum-dashboard-admin-template-WB0PHMG9K">Perfectum Dashboard</a></span>
+                    <span style="text-align:right;float:right">Powered by: <a href="http://grails.org">Grails ${grails.util.GrailsUtil.grailsVersion}</a> &
+                        <a href="https://wrapbootstrap.com/theme/perfectum-dashboard-admin-template-WB0PHMG9K">Perfectum Dashboard</a>
+                        <span id="appVersion">Version: ${grailsApplication.metadata['app.version']}</span>
+                    </span>
                 </p>
 
                 <div class="clearfix"></div>
