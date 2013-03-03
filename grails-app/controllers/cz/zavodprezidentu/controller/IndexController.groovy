@@ -73,7 +73,7 @@ class IndexController {
                 accounts: accounts,
                 key : "incomingTransactions",
                 title: "Počet příspěvků",
-                max: accounts[0].incomingTransactions * 1.1,
+                max: accounts[0].countOfIncomingTransactions * 1.1,
                 format: Consts.NUMBER_FORMAT,
                 lastRun: lastRun,
                 description: "Počet příchozích transakcí na účet"

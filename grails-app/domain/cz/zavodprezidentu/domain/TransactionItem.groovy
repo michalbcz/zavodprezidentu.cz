@@ -1,6 +1,7 @@
 package cz.zavodprezidentu.domain
 
 class TransactionItem {
+
     Date date;
     BigDecimal amount;
     String type;

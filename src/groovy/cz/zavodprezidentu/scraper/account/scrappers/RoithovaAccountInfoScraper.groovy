@@ -25,17 +25,17 @@ class RoithovaAccountInfoScraper implements AccountInfoScraper {
         def rows = document.select("tr")
         rows.remove(0) // removing first row as it is used as a table header
 
-        account.items = []
+        account.transactionItems = []
         account.totalSpend = 0
         account.totalIncome = 0
         rows.each {row ->
             def item = parseRow(row)
             if (item != null) {
                 item.account = account
-                account.items << item
+                account.transactionItems << item
                 if (item.amount > 0) {
                     account.totalIncome += item.amount
-                    account.incomingTransactions += 1
+                    account.countOfIncomingTransactions += 1
                 } else {
                     account.totalSpend += item.amount
                 }
@@ -44,7 +44,7 @@ class RoithovaAccountInfoScraper implements AccountInfoScraper {
 
         account.balance = account.totalIncome - Math.abs(account.totalSpend)
 
-        log.debug "Scraped ${account.items.size()} items."
+        log.debug "Scraped ${account.transactionItems.size()} items."
         return account
     }
 
