@@ -4,6 +4,7 @@ import cz.zavodprezidentu.domain.Account
 import cz.zavodprezidentu.domain.TransactionItem
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
+import org.jsoup.nodes.Element
 import org.junit.Before
 import org.junit.Test
 
@@ -31,7 +32,7 @@ class CeskaSporitelnaTransparentAccountInfoScraperTests {
     }
 
     @Test
-    public void testParseRow() {
+    public void scrapeRightAmountOfTransactionItem() {
         String row = """\
             <table>
                 <tr>
@@ -57,4 +58,5 @@ class CeskaSporitelnaTransparentAccountInfoScraperTests {
         TransactionItem item = scraper.parseRow(d.select("tr"))
         assertEquals(new BigDecimal("5500"), item.amount, DELTA)
     }
+
 }
