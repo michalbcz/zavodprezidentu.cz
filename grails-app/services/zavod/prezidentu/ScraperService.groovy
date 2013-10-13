@@ -9,7 +9,7 @@ class ScraperService {
     def runScrapers() {
 
         /* delete any accounts if exists */
-        log.info("Deleting all candidates if exsists in db.")
+        log.info("Deleting all candidates if exists in db.")
         def allCandidates = Candidate.findAll()
         allCandidates*.delete(flush: true) /* need to flush ie delete immediately otherwise saving fails */
 
@@ -27,8 +27,9 @@ class ScraperService {
         presidentialCandidates()
                 .grep(onlyCandidatesWithTransparentAccounts)
                 .each { Candidate presidentialCandidate ->
-                    def scrapedAccountData = new ScraperAdapter(url: presidentialCandidate.accountUrl).getAccount()
-
+                    log.info("Scraping ${presidentialCandidate.name} with url: ${presidentialCandidate.accountUrl}")
+                    def scraper = new ScraperAdapter(url: presidentialCandidate.accountUrl)
+                    def scrapedAccountData =  scraper.getAccount()
                     presidentialCandidate.account = scrapedAccountData
                     presidentialCandidate.save()
                 }
@@ -102,7 +103,8 @@ class ScraperService {
                 wikiUrl: "http://cs.wikipedia.org/wiki/Jan_Fischer",
                 accountUrl: "http://www.rb.cz/firemni-finance/transparentni-ucty/?tr_acc=vypis&account_number=22200011"
         )
-        allCandidates.add(fischer)
+        /* 13.10.2013 michal bernhard : rb deleted an account, so there is nothing to scrape :((
+        allCandidates.add(fischer)*/
 
         def bobosikova = new Candidate(
                 name: "Jana Bobošíková",
