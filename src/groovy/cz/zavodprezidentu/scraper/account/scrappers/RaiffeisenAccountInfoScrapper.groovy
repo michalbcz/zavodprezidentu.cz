@@ -36,6 +36,13 @@ class RaiffeisenAccountInfoScrapper implements AccountInfoScraper {
 
     @Override
     Account getAccount() {
+
+        if (url) {
+            log.info("Scraping started on url: ${url}")
+        } else {
+            log.info("Scraping...")
+        }
+
         def account = new Account()
         account.bank = BANK_NAME;
 
