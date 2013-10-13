@@ -65,13 +65,13 @@ class IndexController {
     }
 
     def transactions() {
-        def accounts = Account.listOrderByIncomingTransactions().reverse()
+        def accounts = Account.listOrderByCountOfIncomingTransactions().reverse()
         accounts = accounts.sort(reverse(byCandidateHasTransparentAccountComparator()))
         def lastRun = Scraper.findAll().get(0).lastRun
 
         render(view: "index", model: [
                 accounts: accounts,
-                key : "incomingTransactions",
+                key : "countOfIncomingTransactions",
                 title: "Počet příspěvků",
                 max: accounts[0].countOfIncomingTransactions * 1.1,
                 format: Consts.NUMBER_FORMAT,
